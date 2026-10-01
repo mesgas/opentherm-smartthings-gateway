@@ -1,12 +1,12 @@
-// Copia questo file in secrets.h (escluso da git) e compila i valori.
+// Copy this file to secrets.h (git-ignored) and fill in the values.
 #pragma once
 
-#define WIFI_SSID     "nome-rete-2.4GHz"
-#define WIFI_PASSWORD "password-wifi"
+#define WIFI_SSID     "your-2.4GHz-network"
+#define WIFI_PASSWORD "your-wifi-password"
 
-// Se non vuoto, i comandi (POST) devono avere l'header "X-Token: <valore>".
-// Lo stesso valore va messo nelle impostazioni del dispositivo in SmartThings.
+// If not empty, commands (POST) must carry the header "X-Token: <value>".
+// The same value must be set in the device settings in SmartThings.
 #define API_TOKEN     ""
 
-// Se non vuota, protegge l'aggiornamento via rete (OTA).
+// If not empty, it protects the over-the-air (OTA) update.
 #define OTA_PASSWORD  ""

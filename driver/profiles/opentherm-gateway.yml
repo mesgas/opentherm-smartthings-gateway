@@ -75,9 +75,9 @@ components:
     categories:
       - name: TempSensor
 preferences:
-  - title: "Indirizzo IP del gateway"
+  - title: "Gateway IP address"
     name: ipAddress
-    description: "IP dell'ESP (meglio con IP riservato nel router)"
+    description: "IP address of the ESP (preferably a reserved address in your router)"
     required: true
     preferenceType: string
     definition:
@@ -85,9 +85,9 @@ preferences:
       minLength: 7
       maxLength: 15
       default: "192.168.0.50"
-  - title: "Token (opzionale)"
+  - title: "Token (optional)"
     name: token
-    description: "Stesso valore di API_TOKEN nel firmware; vuoto se non usato"
+    description: "Same value as API_TOKEN in the firmware; empty if unused"
     required: false
     preferenceType: string
     definition:

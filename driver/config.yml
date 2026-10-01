@@ -3,5 +3,5 @@ packageKey: 'opentherm-gateway'
 permissions:
   lan: {}
   discovery: {}
-description: "Gateway OpenTherm fai-da-te (ESP32-C3) per caldaie con interfaccia OpenTherm: riscaldamento, sanitaria, modulazione e stato."
-vendorSupportInformation: "Progetto personale"
+description: "DIY OpenTherm gateway (ESP32-C3) for boilers with an OpenTherm interface: heating, hot water, modulation and status."
+vendorSupportInformation: "Personal project"

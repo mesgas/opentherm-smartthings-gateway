@@ -1,5 +1,5 @@
--- Driver SmartThings Edge per il gateway OpenTherm (ESP32-C3).
--- Interroga http://<ip>/api/state ogni POLL_SECONDS e invia i comandi con POST /api/settings.
+-- SmartThings Edge driver for the OpenTherm gateway (ESP32-C3).
+-- Polls http://<ip>/api/state every POLL_SECONDS and sends commands with POST /api/settings.
 
 local capabilities = require "st.capabilities"
 local Driver = require "st.driver"
@@ -9,7 +9,7 @@ local http = cosock.asyncify "socket.http"
 local ltn12 = require "ltn12"
 local json = require "st.json"
 
-local NS = "bookmusic32648"   -- namespace delle capability personalizzate (vedi README per usare le tue)
+local NS = "bookmusic32648"   -- namespace of the custom capabilities (see the README to use your own)
 local POLL_SECONDS = 10
 
 local cap = {
@@ -24,7 +24,7 @@ local cap = {
 -- ---------------------------------------------------------------------------
 local function request(device, method, path, body)
   local ip = device.preferences.ipAddress
-  if not ip or ip == "" then return nil, "IP non impostato" end
+  if not ip or ip == "" then return nil, "IP address not set" end
 
   local headers = {}
   local source
@@ -54,12 +54,12 @@ local function request(device, method, path, body)
   if code ~= 200 then return nil, "HTTP " .. tostring(code) end
 
   local decoded_ok, data = pcall(json.decode, table.concat(resp))
-  if not decoded_ok then return nil, "JSON non valido" end
+  if not decoded_ok then return nil, "invalid JSON" end
   return data
 end
 
 -- ---------------------------------------------------------------------------
--- Stato -> eventi
+-- State -> events
 -- ---------------------------------------------------------------------------
 local function emit(device, component_id, event)
   local component = device.profile.components[component_id]
@@ -83,7 +83,7 @@ local function apply_state(device, st)
   local b = st.boiler or {}
   local t = st.thermostat or {}
 
-  -- caldaia
+  -- boiler
   emit_temperature(device, "caldaia", b.flow)
   if type(b.modulation) == "number" then
     emit(device, "caldaia", cap.modulation.modulation({ value = b.modulation, unit = "%" }))
@@ -107,35 +107,35 @@ local function apply_state(device, st)
     emit(device, "caldaia", cap.status.faultCode({ value = b.faultCode }))
   end
 
-  -- riscaldamento
+  -- heating
   emit_switch(device, "riscaldamento", s.chEnable)
   if type(s.chMax) == "number" then
     emit(device, "riscaldamento", cap.maxTemp.maxTemp({ value = s.chMax, unit = "C" }))
   end
 
-  -- mandata automatica (eco)
+  -- automatic flow temperature (eco)
   emit_switch(device, "mandataauto", s.flowAuto)
 
-  -- acqua calda sanitaria
+  -- domestic hot water
   emit_switch(device, "sanitaria", s.dhwEnable)
   if type(s.dhwSetpoint) == "number" then
     emit(device, "sanitaria", cap.hwSetpoint.setpoint({ value = s.dhwSetpoint, unit = "C" }))
   end
   emit_temperature(device, "sanitaria", b.dhw)
 
-  -- sensori di temperatura
+  -- temperature sensors
   emit_temperature(device, "ritorno", b["return"])
   emit_temperature(device, "esterna", b.outside)
 
-  -- casa: temperatura del termostato originale + obiettivo impostato da SmartThings
+  -- house: temperature of the original thermostat + target set from SmartThings
   emit_temperature(device, "main", b.room)
-  -- acceso/spento (il riscaldamento e' consentito o bloccato) e, a parte, CHI COMANDA
+  -- on/off (heating allowed or blocked)
   if type(s.chEnable) == "boolean" then
     emit(device, "main", capabilities.thermostatMode.thermostatMode(s.chEnable and "heat" or "off"))
   end
-  -- "Comando da app": acceso = regola l'app con l'obiettivo di SmartThings, spento = decide il termostato a muro
+  -- "App command": on = the gateway regulates to the SmartThings target, off = the wall thermostat decides
   emit_switch(device, "comandoapp", s.roomControl)
-  -- in "auto" mostra l'obiettivo del termostato originale, in "heat" quello impostato da SmartThings
+  -- when the thermostat is in command show its own target, otherwise the one set from SmartThings
   local target = s.roomTarget
   if not s.roomControl and type(t.roomSetpoint) == "number" then target = t.roomSetpoint end
   if type(target) == "number" then
@@ -151,8 +151,8 @@ local function apply_state(device, st)
   emit(device, "main", capabilities.thermostatOperatingState.thermostatOperatingState(heating and "heating" or "idle"))
 end
 
--- Un singolo timeout non deve far passare il dispositivo offline: un nuovo tentativo subito,
--- e offline solo dopo MAX_FAILS letture consecutive fallite.
+-- A single timeout must not take the device offline: retry immediately,
+-- and go offline only after MAX_FAILS consecutive failed reads.
 local MAX_FAILS = 4
 
 local function refresh(_, device)
@@ -165,7 +165,7 @@ local function refresh(_, device)
   else
     local fails = (device:get_field("fails") or 0) + 1
     device:set_field("fails", fails)
-    log.warn("gateway non raggiungibile (" .. fails .. "): " .. tostring(err))
+    log.warn("gateway unreachable (" .. fails .. "): " .. tostring(err))
     if fails >= MAX_FAILS then device:offline() end
   end
 end
@@ -176,12 +176,12 @@ local function send_settings(device, settings)
     device:online()
     apply_state(device, st)
   else
-    log.error("comando non riuscito: " .. tostring(err))
+    log.error("command failed: " .. tostring(err))
   end
 end
 
 -- ---------------------------------------------------------------------------
--- Comandi
+-- Commands
 -- ---------------------------------------------------------------------------
 local switch_fields = { riscaldamento = "chEnable", sanitaria = "dhwEnable", mandataauto = "flowAuto", comandoapp = "roomControl" }
 
@@ -199,7 +199,7 @@ local function hw_setpoint_handler(_, device, command)
   send_settings(device, { dhwSetpoint = command.args.value })
 end
 
--- Modalita' = acceso/spento: "off" blocca il riscaldamento, "heat" lo consente
+-- Mode = on/off: "off" blocks heating, "heat" allows it
 local function thermostat_mode_handler(_, device, command)
   local mode = command.args and command.args.mode or command.command
   if mode == "off" then
@@ -209,13 +209,13 @@ local function thermostat_mode_handler(_, device, command)
   end
 end
 
--- impostare l'obiettivo dall'app passa a "chi comanda: app" (il selettore lo mostra); da "off" resta spento
+-- setting the target from the app switches to "app command"; from "off" heating stays off
 local function heating_setpoint_handler(_, device, command)
   send_settings(device, { roomTarget = command.args.setpoint, roomControl = true })
 end
 
 -- ---------------------------------------------------------------------------
--- Ciclo di vita
+-- Lifecycle
 -- ---------------------------------------------------------------------------
 local function start_polling(driver, device)
   local timer = device:get_field("poll_timer")
@@ -242,16 +242,16 @@ local function device_removed(_, device)
 end
 
 -- ---------------------------------------------------------------------------
--- Discovery: crea un solo dispositivo; l'IP si imposta nelle impostazioni del dispositivo
+-- Discovery: creates a single device; the IP is set in the device settings
 -- ---------------------------------------------------------------------------
 local function discovery(driver, _, _)
   if #driver:get_devices() > 0 then return end
   driver:try_create_device({
     type = "LAN",
     device_network_id = "otgw-" .. tostring(os.time()),
-    label = "Caldaia OpenTherm",
+    label = "OpenTherm Gateway",
     profile = "opentherm-gateway",
-    manufacturer = "Fai da te",
+    manufacturer = "DIY",
     model = "OpenTherm Gateway",
   })
 end
