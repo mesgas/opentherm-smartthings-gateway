@@ -53,6 +53,8 @@ constexpr float CTRL_I_MAX      = 25;    // limit of the integral term (C of flo
 constexpr float CTRL_ECO_FLOW_MAX = 50;  // "normal" ceiling of the computed flow temperature
 constexpr float CTRL_BOOST_ERR    = 1.0; // if the house is colder than this for CTRL_BOOST_AFTER_MS, the ceiling rises to the cap
 constexpr unsigned long CTRL_BOOST_AFTER_MS = 1800000;   // 30 minutes
+constexpr float CTRL_FIRE_MARGIN  = 3;   // when far below target the ceiling follows the REAL flow temperature + this margin,
+                                         // so the burner actually fires (the flow then climbs gradually)
 constexpr float CTRL_RETURN_MAX   = 55;  // above this return temperature the flow is reduced (no condensing)
 // Heating curve (only with the outdoor probe enabled): ceiling = BASE + SLOPE x (REF - outdoor temperature)
 // With the values below: 20 C outside = 30, 10 C = 42, 0 C = 54, -5 C = 60. To be tuned on the real system.

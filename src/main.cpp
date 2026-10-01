@@ -208,6 +208,11 @@ static void controlStep() {
       ? fmaxf(CTRL_FLOW_MIN, CTRL_CURVE_BASE + CTRL_CURVE_SLOPE * (CTRL_CURVE_REF - vOut))
       : CTRL_ECO_FLOW_MAX;
   float ceil = ctrlBoost ? cfg.chMax : fminf(cfg.chMax, ecoMax);
+  // far below target: do not wait for the boost. The ceiling follows the real flow temperature plus a margin,
+  // so the requested flow is always above the actual one and the burner fires (it climbs step by step)
+  if (ctrlHeat && err > CTRL_BOOST_ERR && !isnan(vFlow)) {
+    ceil = fmaxf(ceil, fminf(vFlow + CTRL_FIRE_MARGIN, cfg.chMax));
+  }
   if (!isnan(vRet) && vRet > CTRL_RETURN_MAX) {
     ceil = fmaxf(CTRL_FLOW_MIN, ceil - 2.0f * (vRet - CTRL_RETURN_MAX));   // return too hot: not condensing
   }
