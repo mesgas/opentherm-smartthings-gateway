@@ -115,6 +115,8 @@ local function apply_state(device, st)
 
   -- automatic flow temperature (eco)
   emit_switch(device, "mandataauto", s.flowAuto)
+  -- flow temperature currently requested from the boiler (0 = no request)
+  emit_temperature(device, "mandatarichiesta", b.chSetpointSent)
 
   -- domestic hot water
   emit_switch(device, "sanitaria", s.dhwEnable)

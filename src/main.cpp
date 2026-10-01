@@ -394,6 +394,7 @@ static void pollExtra() {
     lastCtrlWrite = millis();
     mOT.sendRequest(OpenTherm::buildRequest(OpenThermMessageType::WRITE_DATA, (OpenThermMessageID)1,
                                             OpenTherm::temperatureToData(ctrlHeat ? ctrlTSet : 0)));
+    vChSet = ctrlHeat ? ctrlTSet : 0;   // keep the reported flow setpoint in sync with what was sent
     return;
   }
 
