@@ -10,6 +10,11 @@ thermostat ── T1/T2 [Slave shield]  ESP32-C3  [Master shield] B1/B2 ── b
                         SmartThings hub (Edge driver)  ──  SmartThings app
 ```
 
+**Background:** I (the author) switched to Home Assistant two years ago and I am very happy with it. This project
+was built for my father's boiler, in a household that still runs SmartThings. It is shared in the hope that it is
+useful to other SmartThings users with an OpenTherm boiler. The HTTP/JSON API below can also be used from any
+other home automation system.
+
 ---
 
 ## ⚠️ Important warnings
@@ -83,6 +88,16 @@ Every boiler supports different OpenTherm IDs: use `GET /api/probe?id=N` to test
 `POLL_IDS` in `config.h`.
 
 ## SmartThings driver (Edge)
+
+**Quick install (driver only):** open this invitation link with the account that owns your hub, enroll the hub and
+install the driver "OpenTherm Gateway" from the channel:
+
+<https://bestow-regional.api.smartthings.com/invite/a5z2RPnwDj1n>
+
+The custom capabilities live in the author's SmartThings namespace and should be usable from any account,
+but this has only been tested on the author's account. Feedback is welcome (open an issue).
+
+To build and publish your own copy (recommended if you want to modify anything), follow the steps below.
 
 You need the [SmartThings CLI](https://github.com/SmartThingsCommunity/smartthings-cli) (on the first command
 a browser opens for sign-in) and a hub that supports Edge drivers.
