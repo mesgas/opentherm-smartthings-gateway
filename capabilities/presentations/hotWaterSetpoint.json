@@ -1,0 +1,59 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{setpoint.value}} {{setpoint.unit}}"
+      }
+    ],
+    "actions": []
+  },
+  "detailView": [
+    {
+      "label": "Acqua calda",
+      "displayType": "slider",
+      "slider": {
+        "range": [
+          38,
+          60
+        ],
+        "step": 1,
+        "unit": "setpoint.unit",
+        "command": "setSetpoint",
+        "argumentType": "number",
+        "value": "setpoint.value"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "Acqua calda",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "setpoint.value",
+          "valueType": "number",
+          "unit": "setpoint.unit",
+          "range": [
+            38,
+            60
+          ]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "Acqua calda",
+        "displayType": "numberField",
+        "numberField": {
+          "command": "setSetpoint",
+          "argumentType": "number",
+          "range": [
+            38,
+            60
+          ],
+          "unit": "C"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{maxTemp.value}} {{maxTemp.unit}}"
+      }
+    ],
+    "actions": []
+  },
+  "detailView": [
+    {
+      "label": "Mandata massima",
+      "displayType": "slider",
+      "slider": {
+        "range": [
+          30,
+          85
+        ],
+        "step": 1,
+        "unit": "maxTemp.unit",
+        "command": "setMaxTemp",
+        "argumentType": "number",
+        "value": "maxTemp.value"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "Mandata massima",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "maxTemp.value",
+          "valueType": "number",
+          "unit": "maxTemp.unit",
+          "range": [
+            30,
+            85
+          ]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "label": "Mandata massima",
+        "displayType": "numberField",
+        "numberField": {
+          "command": "setMaxTemp",
+          "argumentType": "number",
+          "range": [
+            30,
+            85
+          ],
+          "unit": "C"
+        }
+      }
+    ]
+  }
+}

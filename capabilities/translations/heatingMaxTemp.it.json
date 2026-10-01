@@ -1,0 +1,17 @@
+{
+  "tag": "it",
+  "label": "Mandata massima",
+  "attributes": {
+    "maxTemp": {
+      "label": "mandata massima",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {}
+    }
+  },
+  "commands": {
+    "setMaxTemp": {
+      "label": "imposta mandata massima",
+      "arguments": {}
+    }
+  }
+}

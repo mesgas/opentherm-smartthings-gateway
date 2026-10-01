@@ -1,0 +1,46 @@
+{
+  "name": "Heating Max Temp",
+  "attributes": {
+    "maxTemp": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "minimum": 30,
+            "maximum": 85
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "C"
+            ],
+            "default": "C"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "value"
+        ]
+      },
+      "enumCommands": [],
+      "setter": "setMaxTemp"
+    }
+  },
+  "commands": {
+    "setMaxTemp": {
+      "name": "setMaxTemp",
+      "arguments": [
+        {
+          "name": "value",
+          "optional": false,
+          "schema": {
+            "type": "number",
+            "minimum": 30,
+            "maximum": 85
+          }
+        }
+      ]
+    }
+  }
+}

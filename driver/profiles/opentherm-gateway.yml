@@ -1,0 +1,97 @@
+name: opentherm-gateway
+components:
+  - id: main
+    label: Casa
+    capabilities:
+      - id: temperatureMeasurement
+        version: 1
+      - id: thermostatMode
+        version: 1
+      - id: thermostatHeatingSetpoint
+        version: 1
+      - id: thermostatOperatingState
+        version: 1
+      - id: refresh
+        version: 1
+    categories:
+      - name: Thermostat
+  - id: comandoapp
+    label: Comando da app
+    capabilities:
+      - id: switch
+        version: 1
+    categories:
+      - name: Switch
+  - id: riscaldamento
+    label: Riscaldamento
+    capabilities:
+      - id: switch
+        version: 1
+      - id: bookmusic32648.heatingMaxTemp
+        version: 1
+    categories:
+      - name: Thermostat
+  - id: mandataauto
+    label: Mandata auto
+    capabilities:
+      - id: switch
+        version: 1
+    categories:
+      - name: Switch
+  - id: sanitaria
+    label: Acqua calda
+    capabilities:
+      - id: switch
+        version: 1
+      - id: bookmusic32648.hotWaterSetpoint
+        version: 1
+      - id: temperatureMeasurement
+        version: 1
+    categories:
+      - name: WaterHeater
+  - id: caldaia
+    label: Caldaia
+    capabilities:
+      - id: temperatureMeasurement
+        version: 1
+      - id: bookmusic32648.boilerModulation
+        version: 1
+      - id: bookmusic32648.boilerStatus
+        version: 1
+    categories:
+      - name: Thermostat
+  - id: ritorno
+    label: Ritorno
+    capabilities:
+      - id: temperatureMeasurement
+        version: 1
+    categories:
+      - name: TempSensor
+  - id: esterna
+    label: Esterna
+    capabilities:
+      - id: temperatureMeasurement
+        version: 1
+    categories:
+      - name: TempSensor
+preferences:
+  - title: "Indirizzo IP del gateway"
+    name: ipAddress
+    description: "IP dell'ESP (meglio con IP riservato nel router)"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      minLength: 7
+      maxLength: 15
+      default: "192.168.0.50"
+  - title: "Token (opzionale)"
+    name: token
+    description: "Stesso valore di API_TOKEN nel firmware; vuoto se non usato"
+    required: false
+    preferenceType: string
+    definition:
+      stringType: text
+      minLength: 0
+      maxLength: 64
+      default: ""

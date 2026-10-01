@@ -1,0 +1,238 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{flame.value}}",
+        "alternatives": [
+          {
+            "key": "on",
+            "value": "Accesa",
+            "type": "active"
+          },
+          {
+            "key": "off",
+            "value": "Spenta",
+            "type": "inactive"
+          }
+        ]
+      }
+    ],
+    "actions": []
+  },
+  "detailView": [
+    {
+      "label": "Fiamma",
+      "displayType": "state",
+      "state": {
+        "label": "{{flame.value}}",
+        "alternatives": [
+          {
+            "key": "on",
+            "value": "Accesa",
+            "type": "active"
+          },
+          {
+            "key": "off",
+            "value": "Spenta",
+            "type": "inactive"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Riscald.",
+      "displayType": "state",
+      "state": {
+        "label": "{{heating.value}}",
+        "alternatives": [
+          {
+            "key": "active",
+            "value": "Attivo",
+            "type": "active"
+          },
+          {
+            "key": "idle",
+            "value": "Fermo",
+            "type": "inactive"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Acqua",
+      "displayType": "state",
+      "state": {
+        "label": "{{hotWater.value}}",
+        "alternatives": [
+          {
+            "key": "active",
+            "value": "Attiva",
+            "type": "active"
+          },
+          {
+            "key": "idle",
+            "value": "Ferma",
+            "type": "inactive"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Termostato",
+      "displayType": "state",
+      "state": {
+        "label": "{{heatRequest.value}}",
+        "alternatives": [
+          {
+            "key": "on",
+            "value": "Chiede",
+            "type": "active"
+          },
+          {
+            "key": "off",
+            "value": "Riposo",
+            "type": "inactive"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Guasto",
+      "displayType": "state",
+      "state": {
+        "label": "{{fault.value}}",
+        "alternatives": [
+          {
+            "key": "ok",
+            "value": "No",
+            "type": "inactive"
+          },
+          {
+            "key": "fault",
+            "value": "SI",
+            "type": "active"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Codice",
+      "displayType": "state",
+      "state": {
+        "label": "{{faultCode.value}}"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "Fiamma",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {
+              "key": "on",
+              "value": "Accesa",
+              "type": "active"
+            },
+            {
+              "key": "off",
+              "value": "Spenta",
+              "type": "inactive"
+            }
+          ],
+          "value": "flame.value"
+        }
+      },
+      {
+        "label": "Riscald.",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {
+              "key": "active",
+              "value": "Attivo",
+              "type": "active"
+            },
+            {
+              "key": "idle",
+              "value": "Fermo",
+              "type": "inactive"
+            }
+          ],
+          "value": "heating.value"
+        }
+      },
+      {
+        "label": "Acqua",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {
+              "key": "active",
+              "value": "Attiva",
+              "type": "active"
+            },
+            {
+              "key": "idle",
+              "value": "Ferma",
+              "type": "inactive"
+            }
+          ],
+          "value": "hotWater.value"
+        }
+      },
+      {
+        "label": "Termostato",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {
+              "key": "on",
+              "value": "Chiede",
+              "type": "active"
+            },
+            {
+              "key": "off",
+              "value": "Riposo",
+              "type": "inactive"
+            }
+          ],
+          "value": "heatRequest.value"
+        }
+      },
+      {
+        "label": "Guasto",
+        "displayType": "list",
+        "list": {
+          "alternatives": [
+            {
+              "key": "ok",
+              "value": "No",
+              "type": "inactive"
+            },
+            {
+              "key": "fault",
+              "value": "SI",
+              "type": "active"
+            }
+          ],
+          "value": "fault.value"
+        }
+      },
+      {
+        "label": "Codice",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "faultCode.value",
+          "valueType": "number",
+          "range": [
+            0,
+            255
+          ]
+        }
+      }
+    ],
+    "actions": []
+  }
+}

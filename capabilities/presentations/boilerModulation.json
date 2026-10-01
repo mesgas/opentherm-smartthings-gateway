@@ -1,0 +1,37 @@
+{
+  "dashboard": {
+    "states": [
+      {
+        "label": "{{modulation.value}} {{modulation.unit}}"
+      }
+    ],
+    "actions": []
+  },
+  "detailView": [
+    {
+      "label": "Modulazione",
+      "displayType": "state",
+      "state": {
+        "label": "{{modulation.value}} {{modulation.unit}}"
+      }
+    }
+  ],
+  "automation": {
+    "conditions": [
+      {
+        "label": "Modulazione",
+        "displayType": "numberField",
+        "numberField": {
+          "value": "modulation.value",
+          "valueType": "number",
+          "unit": "modulation.unit",
+          "range": [
+            0,
+            100
+          ]
+        }
+      }
+    ],
+    "actions": []
+  }
+}

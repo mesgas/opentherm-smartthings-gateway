@@ -1,0 +1,82 @@
+{
+  "tag": "it",
+  "label": "Stato",
+  "attributes": {
+    "faultCode": {
+      "label": "codice guasto",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {}
+    },
+    "fault": {
+      "label": "guasto",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {
+        "value": {
+          "fault": {
+            "label": "si"
+          },
+          "ok": {
+            "label": "no"
+          }
+        }
+      }
+    },
+    "flame": {
+      "label": "fiamma",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {
+        "value": {
+          "on": {
+            "label": "accesa"
+          },
+          "off": {
+            "label": "spenta"
+          }
+        }
+      }
+    },
+    "heating": {
+      "label": "riscaldamento",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {
+        "value": {
+          "active": {
+            "label": "attivo"
+          },
+          "idle": {
+            "label": "fermo"
+          }
+        }
+      }
+    },
+    "hotWater": {
+      "label": "acqua calda",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {
+        "value": {
+          "active": {
+            "label": "attiva"
+          },
+          "idle": {
+            "label": "ferma"
+          }
+        }
+      }
+    },
+    "heatRequest": {
+      "label": "termostato",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {
+        "value": {
+          "on": {
+            "label": "chiede calore"
+          },
+          "off": {
+            "label": "a riposo"
+          }
+        }
+      }
+    }
+  },
+  "commands": {}
+}

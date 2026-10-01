@@ -1,0 +1,12 @@
+{
+  "tag": "it",
+  "label": "Modulazione caldaia",
+  "attributes": {
+    "modulation": {
+      "label": "modulazione",
+      "displayTemplate": "{{attribute}} di {{device.label}}: {{value}}",
+      "i18n": {}
+    }
+  },
+  "commands": {}
+}

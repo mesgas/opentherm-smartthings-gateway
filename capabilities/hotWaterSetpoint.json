@@ -1,0 +1,46 @@
+{
+  "name": "Hot Water Setpoint",
+  "attributes": {
+    "setpoint": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number",
+            "minimum": 38,
+            "maximum": 60
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "C"
+            ],
+            "default": "C"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "value"
+        ]
+      },
+      "enumCommands": [],
+      "setter": "setSetpoint"
+    }
+  },
+  "commands": {
+    "setSetpoint": {
+      "name": "setSetpoint",
+      "arguments": [
+        {
+          "name": "value",
+          "optional": false,
+          "schema": {
+            "type": "number",
+            "minimum": 38,
+            "maximum": 60
+          }
+        }
+      ]
+    }
+  }
+}
