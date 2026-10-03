@@ -145,6 +145,17 @@ Component ids in the profile are Italian technical identifiers (`main` = house, 
 | Caldaia (Boiler) | flow temperature, modulation, status (flame, heating, hot water, thermostat, fault) |
 | Ritorno, Esterna (Return, Outdoor) | temperature |
 
+## Statistics page
+
+Open `http://otgw.local/` (or the IP of the ESP) in a browser on your local network. It shows, for the last
+24 hours: flame-on time, heating and hot water time, burner starts, average modulation, the share of burner time
+spent condensing (return below ~55 °C), and charts of temperatures (house, outdoor, flow, return, requested flow),
+modulation/flame and heating/hot water duty. The page is Italian or English depending on the browser language.
+
+The history is kept in RAM (about 23 KB, one point per minute) and is **cleared when the ESP restarts**. Lifetime
+burner hours and starts are saved to flash every 30 minutes. Heavy pages are limited to one request every 2 seconds,
+because on a single core a flood of Wi-Fi traffic can disturb the OpenTherm timing.
+
 ## API
 
 - `GET /api/state` — full state as JSON (`null` = value not available)
@@ -152,6 +163,7 @@ Component ids in the profile are Italian technical identifiers (`main` = house, 
   `roomControl`, `roomTarget`, `flowAuto`, `outdoorEnabled`
 - `GET /api/ids` — OpenTherm IDs requested by the thermostat and rejected by the boiler
 - `GET /api/probe?id=N` — test read of one ID (read-only)
+- `GET /` — statistics page; `GET /api/stats` — 24 h summary; `GET /api/history?step=N` — 24 h history in points of N minutes (N ≥ 5)
 
 If `API_TOKEN` in `secrets.h` is not empty, POST requests need the `X-Token` header. There is no encryption:
 use it only on a trusted local network.

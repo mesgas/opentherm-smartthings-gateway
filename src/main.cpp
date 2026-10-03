@@ -17,6 +17,9 @@
 //                        roomControl, roomTarget, flowAuto, outdoorEnabled
 //   GET  /api/ids        OpenTherm IDs seen (debug)
 //   GET  /api/probe?id=N read-only test request of one ID
+//   GET  /                statistics page (24 h charts)
+//   GET  /api/stats      24 h summary (burner minutes, starts, condensing share...)
+//   GET  /api/history    24 h history, points of ?step=N minutes
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -29,6 +32,7 @@
 #include <math.h>
 #include "config.h"
 #include "secrets.h"
+#include "webpage.h"
 
 // ===========================================================================
 // OpenTherm
@@ -421,6 +425,83 @@ static void pollExtra() {
 }
 
 // ===========================================================================
+// Statistics: 24 h ring buffer, one bucket per minute (~23 KB of RAM, never written to flash)
+// ===========================================================================
+struct Bucket {
+  int16_t flow, ret, room, out, req;   // tenths of a degree C at the end of the minute, INT16_MIN = unknown
+  uint8_t mod;                         // % at the end of the minute, 255 = unknown
+  uint8_t flameSec, chSec, dhwSec, condSec, starts;   // seconds (0-60) / count within the minute
+};
+constexpr int HIST_N = 1440;           // 24 hours
+static Bucket hist[HIST_N];
+static int histHead = 0;               // current (incomplete) bucket
+static int histFilled = 0;             // completed buckets
+static uint32_t totalFlameSec = 0, totalStarts = 0;   // lifetime counters, saved to flash every 30 min
+
+static void clearBucket(Bucket &b) {
+  b.flow = b.ret = b.room = b.out = b.req = INT16_MIN;
+  b.mod = 255;
+  b.flameSec = b.chSec = b.dhwSec = b.condSec = b.starts = 0;
+}
+
+static int16_t deci(float v) { return isnan(v) ? INT16_MIN : (int16_t)lroundf(v * 10.0f); }
+static void addSat(uint8_t &v, uint8_t d) { const uint16_t s = v + d; v = s > 255 ? 255 : (uint8_t)s; }
+
+static void statsInit() {
+  for (int i = 0; i < HIST_N; i++) clearBucket(hist[i]);
+  totalFlameSec = prefs.getUInt("tFlame", 0);
+  totalStarts   = prefs.getUInt("tStarts", 0);
+}
+
+// called from loop(): accumulates seconds once per second and closes a bucket every minute
+static void statsTick() {
+  static unsigned long lastSec = 0, lastMin = 0, lastSave = 0;
+  static bool prevFlameKnown = false, prevFlame = false;
+  static uint32_t savedFlame = 0, savedStarts = 0;
+  const unsigned long now = millis();
+  if (lastSec == 0) { lastSec = lastMin = lastSave = now; return; }
+  const unsigned long elapsed = now - lastSec;
+  if (elapsed < 1000) return;
+  lastSec = now;
+  const uint8_t dt = elapsed > 5000 ? 5 : (uint8_t)(elapsed / 1000);
+
+  Bucket &c = hist[histHead];
+  if (bFlame == 1) {
+    addSat(c.flameSec, dt);
+    totalFlameSec += dt;
+    if (!isnan(vRet) && vRet < CTRL_RETURN_MAX) addSat(c.condSec, dt);   // return below the dew point: condensing
+  }
+  if (bCh == 1)  addSat(c.chSec, dt);
+  if (bDhw == 1) addSat(c.dhwSec, dt);
+  if (bFlame >= 0) {
+    const bool on = bFlame == 1;
+    if (prevFlameKnown && on && !prevFlame) { addSat(c.starts, 1); totalStarts++; }
+    prevFlame = on;
+    prevFlameKnown = true;
+  }
+
+  if (now - lastMin >= 60000) {
+    lastMin = now;
+    c.flow = deci(vFlow);
+    c.ret  = deci(vRet);
+    c.room = deci(vRoom);
+    c.out  = deci(vOut);
+    c.req  = deci(vChSet);
+    c.mod  = isnan(vMod) ? 255 : (uint8_t)lroundf(clampf(vMod, 0, 100));
+    histHead = (histHead + 1) % HIST_N;
+    if (histFilled < HIST_N - 1) histFilled++;
+    clearBucket(hist[histHead]);
+  }
+  if (now - lastSave >= 1800000UL && (totalFlameSec != savedFlame || totalStarts != savedStarts)) {
+    lastSave = now;
+    savedFlame = totalFlameSec;
+    savedStarts = totalStarts;
+    prefs.putUInt("tFlame", totalFlameSec);
+    prefs.putUInt("tStarts", totalStarts);
+  }
+}
+
+// ===========================================================================
 // HTTP API
 // ===========================================================================
 WebServer server(HTTP_PORT);
@@ -471,6 +552,8 @@ static void sendState(int code = 200) {
   putF(c, "ceiling", ctrlCeil, 0);
   c["boost"] = ctrlBoost;
   doc["wifiRssi"] = WiFi.RSSI();
+  doc["heapFree"] = ESP.getFreeHeap();
+  doc["heapMin"] = ESP.getMinFreeHeap();
 
   JsonObject b = doc["boiler"].to<JsonObject>();
   putF(b, "flow", vFlow);
@@ -566,6 +649,106 @@ static void handleSettings() {
   }
   if (changed) saveSettings();
   sendState();
+}
+
+// Heavy pages (statistics page, stats, history) are limited to one every 2 seconds: with a single core,
+// a flood of Wi-Fi traffic disturbs the OpenTherm bit timing and the thermostat loses messages.
+static bool heavyAllowed() {
+  static unsigned long last = 0;
+  const unsigned long now = millis();
+  if (last != 0 && now - last < 2000) {
+    server.send(429, "application/json", "{\"error\":\"too many requests, retry in 2 seconds\"}");
+    return false;
+  }
+  last = now;
+  return true;
+}
+
+// GET /api/stats: summary of the last 24 hours (or of the data collected so far)
+static void handleStats() {
+  if (!heavyAllowed()) return;
+  const int n = histFilled + 1;                       // completed buckets + the current one
+  uint32_t flame = 0, ch = 0, dhw = 0, cond = 0, starts = 0, modW = 0;
+  double modSum = 0, rSum = 0, oSum = 0;
+  int rN = 0, oN = 0;
+  float rMin = 1e9f, rMax = -1e9f, oMin = 1e9f, oMax = -1e9f, fMax = -1e9f;
+  for (int i = 0; i < n; i++) {
+    const Bucket &b = hist[(histHead - i + HIST_N) % HIST_N];
+    flame += b.flameSec; ch += b.chSec; dhw += b.dhwSec; cond += b.condSec; starts += b.starts;
+    if (b.mod != 255 && b.flameSec) { modSum += (double)b.mod * b.flameSec; modW += b.flameSec; }
+    if (b.room != INT16_MIN) { const float v = b.room / 10.0f; rSum += v; rN++; if (v < rMin) rMin = v; if (v > rMax) rMax = v; }
+    if (b.out != INT16_MIN)  { const float v = b.out / 10.0f;  oSum += v; oN++; if (v < oMin) oMin = v; if (v > oMax) oMax = v; }
+    if (b.flow != INT16_MIN && b.flow / 10.0f > fMax) fMax = b.flow / 10.0f;
+  }
+  JsonDocument doc;
+  doc["windowMinutes"] = n;
+  doc["flameMinutes"] = roundf(flame / 6.0f) / 10.0f;
+  doc["heatingMinutes"] = roundf(ch / 6.0f) / 10.0f;
+  doc["hotWaterMinutes"] = roundf(dhw / 6.0f) / 10.0f;
+  doc["burnerStarts"] = starts;
+  if (modW) doc["avgModulation"] = roundf((float)(modSum / modW)); else doc["avgModulation"] = nullptr;
+  if (flame) doc["condensingPercent"] = roundf(100.0f * cond / flame); else doc["condensingPercent"] = nullptr;
+  JsonObject r = doc["room"].to<JsonObject>();
+  if (rN) { r["min"] = rMin; r["avg"] = roundf((float)(rSum / rN) * 10) / 10; r["max"] = rMax; }
+  JsonObject o = doc["outdoor"].to<JsonObject>();
+  if (oN) { o["min"] = oMin; o["avg"] = roundf((float)(oSum / oN) * 10) / 10; o["max"] = oMax; }
+  if (fMax > -1e8f) doc["flowMax"] = fMax; else doc["flowMax"] = nullptr;
+  doc["totalFlameHours"] = roundf(totalFlameSec / 360.0f) / 10.0f;
+  doc["totalBurnerStarts"] = totalStarts;
+  doc["uptimeSeconds"] = millis() / 1000;
+  doc["heapFree"] = ESP.getFreeHeap();
+  String out;
+  serializeJson(doc, out);
+  server.send(200, "application/json", out);
+}
+
+// GET /api/history?step=N: the 24 h history in points of N minutes (N >= 5, default 5).
+// The whole response is built in one buffer and sent with a single write: many small writes stall
+// on TCP delayed ACKs and block the OpenTherm relay for a second.
+static void appendChannel(String &s, const char *name, int n, int step, int points, bool temp, int field) {
+  s += '"'; s += name; s += "\":[";
+  for (int pt = 0; pt < points; pt++) {
+    const int k0 = pt * step, k1 = (k0 + step < n) ? k0 + step : n;
+    double acc = 0; int cnt = 0;
+    for (int k = k0; k < k1; k++) {
+      const Bucket &b = hist[(histHead - (n - 1) + k + HIST_N * 2) % HIST_N];
+      switch (field) {
+        case 0: if (b.flow != INT16_MIN) { acc += b.flow; cnt++; } break;
+        case 1: if (b.ret  != INT16_MIN) { acc += b.ret;  cnt++; } break;
+        case 2: if (b.room != INT16_MIN) { acc += b.room; cnt++; } break;
+        case 3: if (b.out  != INT16_MIN) { acc += b.out;  cnt++; } break;
+        case 4: if (b.req  != INT16_MIN) { acc += b.req;  cnt++; } break;
+        case 5: if (b.mod != 255) { acc += b.mod; cnt++; } break;
+        case 6: acc += b.flameSec; cnt = 1; break;
+        case 7: acc += b.chSec;    cnt = 1; break;
+        case 8: acc += b.dhwSec;   cnt = 1; break;
+        case 9: acc += b.starts;   cnt = 1; break;
+      }
+    }
+    if (pt) s += ',';
+    if (!cnt) s += "null";
+    else if (temp) s += String((float)(acc / cnt) / 10.0f, 1);
+    else s += String((int)lroundf((float)(acc / cnt)));
+  }
+  s += ']';
+}
+
+static void handleHistory() {
+  if (!heavyAllowed()) return;
+  int step = server.hasArg("step") ? server.arg("step").toInt() : 5;
+  if (step < 5) step = 5;
+  if (step > 60) step = 60;
+  const int n = histFilled + 1;
+  const int points = (n + step - 1) / step;
+  String s;
+  s.reserve(points * 55 + 200);
+  s += "{\"step\":"; s += step; s += ",\"points\":"; s += points; s += ',';
+  const char *names[] = {"flow", "ret", "room", "out", "req", "mod", "flame", "ch", "dhw", "starts"};
+  for (int i = 0; i < 10; i++) {
+    appendChannel(s, names[i], n, step, points, i <= 4, i);
+    s += (i < 9) ? ',' : '}';
+  }
+  server.send(200, "application/json", s);
 }
 
 static void handleIds() {
@@ -672,6 +855,7 @@ void setup() {
   cfg.roomTarget  = prefs.getFloat("rt", 20);
   cfg.flowAuto    = prefs.getBool("fa", false);
   cfg.outdoorEnabled = prefs.getBool("oe", false);
+  statsInit();
   analogSetAttenuation(ADC_11db);   // outdoor probe input up to ~3.1 V
   ctrlI           = prefs.getFloat("ctrlI", 0);
 
@@ -686,6 +870,9 @@ void setup() {
   server.on("/api/settings", HTTP_POST, handleSettings);
   server.on("/api/ids", HTTP_GET, handleIds);
   server.on("/api/probe", HTTP_GET, handleProbe);
+  server.on("/", HTTP_GET, []() { if (heavyAllowed()) server.send_P(200, "text/html", STATS_PAGE); });
+  server.on("/api/stats", HTTP_GET, handleStats);
+  server.on("/api/history", HTTP_GET, handleHistory);
   server.onNotFound([]() { sendError(404, "not found"); });
   server.begin();
 
@@ -698,6 +885,7 @@ void loop() {
   if (otaBusy) { ArduinoOTA.handle(); return; }   // update in progress: receive only
   sOT.process();
   readOutdoor();
+  statsTick();
   controlStep();
   pollExtra();
   server.handleClient();
