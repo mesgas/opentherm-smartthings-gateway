@@ -16,6 +16,7 @@ h1{font-size:18px;margin:0 0 10px}h2{font-size:14px;margin:14px 0 4px}
 canvas{width:100%;height:190px;background:#fff;border-radius:8px;box-shadow:0 1px 2px #0002}
 .leg{font-size:12px;margin:2px 0}.leg i{display:inline-block;width:10px;height:10px;margin:0 3px 0 8px;border-radius:2px}
 small{color:#888}
+#tip{position:fixed;display:none;background:#222e;color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;pointer-events:none;z-index:9;line-height:1.55;white-space:nowrap}canvas{touch-action:pan-y}
 #rng{margin:0 0 10px}button{border:0;border-radius:6px;padding:6px 14px;background:#dde1e6;font-size:14px}button.on{background:#2e86c1;color:#fff}
 </style></head><body>
 <h1 id="ti">OpenTherm</h1>
@@ -25,6 +26,7 @@ small{color:#888}
 <h2 id="h2"></h2><canvas id="c2"></canvas><div class="leg" id="l2"></div>
 <h2 id="h3"></h2><canvas id="c3"></canvas><div class="leg" id="l3"></div>
 <p><small id="ft"></small></p>
+<div id="tip"></div>
 <script>
 const IT=(navigator.language||'').startsWith('it');
 const T=IT?{ti:'Statistiche caldaia (ultime 24 ore)',h1:'Temperature (°C)',h2:'Modulazione e fiamma',h3:'Riscaldamento e acqua calda',
@@ -58,7 +60,24 @@ function draw(cv,leg,series,opt){
   s.v.forEach((x,i)=>{if(x==null){pen=false;return}if(!pen){g.moveTo(X(i),Y(x));pen=true}else g.lineTo(X(i),Y(x))});
   g.stroke();g.setLineDash([]);
  }
+ if(opt.cur!=null){const cx=X(opt.cur);g.strokeStyle='#555';g.lineWidth=1;g.setLineDash([2,2]);g.beginPath();g.moveTo(cx,Tp);g.lineTo(cx,Tp+ph);g.stroke();g.setLineDash([]);
+  for(const s of series){const x=s.v[opt.cur];if(x!=null&&!s.bar){g.fillStyle=s.c;g.beginPath();g.arc(cx,Y(x),3.5,0,7);g.fill()}}}
  leg.innerHTML=series.map(s=>'<i style="background:'+s.c+'"></i>'+s.n).join('');
+ cv._a={leg,series,opt:Object.assign({},opt,{cur:null})};
+ if(!cv._i){cv._i=1;
+  const tip=$('tip');
+  const mv=ev=>{const a=cv._a;if(!a)return;const p=ev.touches?ev.touches[0]:ev,r=cv.getBoundingClientRect(),n=a.series[0].v.length;if(n<1)return;
+   let i=n>1?Math.round((p.clientX-r.left-34)/(r.width-40)*(n-1)):0;i=Math.max(0,Math.min(n-1,i));
+   draw(cv,a.leg,a.series,Object.assign({},a.opt,{cur:i}));
+   const d=new Date(Date.now()-(n-1-i)*a.opt.step*60000);
+   const lab=d.toLocaleString(IT?'it-IT':'en-GB',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+   tip.innerHTML='<b>'+lab+'</b><br>'+a.series.map(s=>{const x=s.v[i];return '<span style="color:'+s.c+'">&#9632;</span> '+s.n+': '+(x==null?'-':x.toFixed(s.u=='\u00b0C'?1:0)+' '+s.u)}).join('<br>');
+   tip.style.display='block';const tw=tip.offsetWidth,th=tip.offsetHeight;let lx=p.clientX+14,ly=p.clientY+14;
+   if(lx+tw>innerWidth-4)lx=p.clientX-tw-14;if(ly+th>innerHeight-4)ly=p.clientY-th-14;tip.style.left=Math.max(4,lx)+'px';tip.style.top=Math.max(4,ly)+'px'};
+  const out=()=>{tip.style.display='none';const a=cv._a;if(a)draw(cv,a.leg,a.series,a.opt)};
+  cv.addEventListener('mousemove',mv);cv.addEventListener('touchstart',mv,{passive:true});cv.addEventListener('touchmove',mv,{passive:true});
+  cv.addEventListener('mouseleave',out);cv.addEventListener('touchend',out);
+ }
 }
 let RANGE='24h';
 async function jget(u){let r=await fetch(u);if(r.status==429){await new Promise(x=>setTimeout(x,2300));r=await fetch(u)}return r.json()}
@@ -77,9 +96,9 @@ async function load(){
    +card(st.condensingPercent==null?'-':st.condensingPercent.toFixed(0)+' %',T.cond)
    +card(st.totalFlameHours.toFixed(1)+' '+T.h,T.tot)+card(fmtMin(st.windowMinutes),T.data);
   const pct=a=>a.map(x=>x==null?null:Math.min(100,x/(60*hs.stepMinutes)*100));
-  draw($('c1'),$('l1'),[{n:T.room,c:'#e67e22',v:hs.room},{n:T.out,c:'#3498db',v:hs.out},{n:T.flow,c:'#c0392b',v:hs.flow},{n:T.ret,c:'#8e44ad',v:hs.ret},{n:T.req,c:'#999',v:hs.req,dash:1}],{step:hs.stepMinutes});
-  draw($('c2'),$('l2'),[{n:T.fd,c:'#f5b7b1',v:pct(hs.flame),bar:1},{n:T.mod,c:'#c0392b',v:hs.mod}],{step:hs.stepMinutes,min:0,max:100});
-  draw($('c3'),$('l3'),[{n:T.ch,c:'#e67e22',v:pct(hs.ch),bar:1},{n:T.dw,c:'#2e86c1',v:pct(hs.dhw)}],{step:hs.stepMinutes,min:0,max:100});
+  draw($('c1'),$('l1'),[{n:T.room,c:'#e67e22',v:hs.room,u:'°C'},{n:T.out,c:'#3498db',v:hs.out,u:'°C'},{n:T.flow,c:'#c0392b',v:hs.flow,u:'°C'},{n:T.ret,c:'#8e44ad',v:hs.ret,u:'°C'},{n:T.req,c:'#999',v:hs.req,dash:1,u:'°C'}],{step:hs.stepMinutes});
+  draw($('c2'),$('l2'),[{n:T.fd,c:'#f5b7b1',v:pct(hs.flame),bar:1,u:'%'},{n:T.mod,c:'#c0392b',v:hs.mod,u:'%'}],{step:hs.stepMinutes,min:0,max:100});
+  draw($('c3'),$('l3'),[{n:T.ch,c:'#e67e22',v:pct(hs.ch),bar:1,u:'%'},{n:T.dw,c:'#2e86c1',v:pct(hs.dhw),u:'%'}],{step:hs.stepMinutes,min:0,max:100});
   $('ft').textContent=T.upd;
  }catch(e){$('ti').textContent='...'}
 }
