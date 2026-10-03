@@ -18,8 +18,8 @@
 //   GET  /api/ids        OpenTherm IDs seen (debug)
 //   GET  /api/probe?id=N read-only test request of one ID
 //   GET  /                statistics page (24 h charts)
-//   GET  /api/stats      24 h summary (burner minutes, starts, condensing share...)
-//   GET  /api/history    24 h history, points of ?step=N minutes
+//   GET  /api/stats      24 h summary (burner minutes, starts, condensing share...); ?range=30d for 30 days
+//   GET  /api/history    24 h history (?step=N minutes) or ?range=30d (?step=N half-hours)
 
 #include <Arduino.h>
 #include <WiFi.h>
@@ -28,6 +28,7 @@
 #include <ArduinoOTA.h>
 #include <ArduinoJson.h>
 #include <Preferences.h>
+#include <LittleFS.h>
 #include <OpenTherm.h>
 #include <math.h>
 #include "config.h"
@@ -425,32 +426,116 @@ static void pollExtra() {
 }
 
 // ===========================================================================
-// Statistics: 24 h ring buffer, one bucket per minute (~23 KB of RAM, never written to flash)
+// Statistics
+//   fine tier : last 24 h, one bucket per minute (RAM only)
+//   month tier: last 30 days, one bucket per 30 minutes (RAM, saved to flash every hour and before OTA)
 // ===========================================================================
-struct Bucket {
+struct Bucket {                        // one minute
   int16_t flow, ret, room, out, req;   // tenths of a degree C at the end of the minute, INT16_MIN = unknown
-  uint8_t mod;                         // % at the end of the minute, 255 = unknown
+  uint16_t modSec;                     // sum of (modulation % x seconds) within the minute
   uint8_t flameSec, chSec, dhwSec, condSec, starts;   // seconds (0-60) / count within the minute
 };
 constexpr int HIST_N = 1440;           // 24 hours
 static Bucket hist[HIST_N];
 static int histHead = 0;               // current (incomplete) bucket
 static int histFilled = 0;             // completed buckets
+
+struct MBucket {                       // 30 minutes
+  int16_t flow, ret, room, out, req;   // average, tenths of a degree C, INT16_MIN = unknown
+  uint8_t starts, pad;
+  uint16_t flameSec, chSec, dhwSec, condSec;           // seconds (0-1800)
+  uint32_t modSec;                     // sum of (modulation % x seconds)
+};
+constexpr int MH_N = 1440;             // 30 days
+static MBucket mhist[MH_N];
+static int mhNext = 0;                 // next slot to write
+static int mhCount = 0;                // completed buckets
+
+struct MAcc {                          // accumulator of the current 30 minutes
+  int32_t s[5]; uint8_t n[5];          // flow, ret, room, out, req
+  uint32_t modSec;
+  uint16_t flame, ch, dhw, cond, starts;
+  uint8_t minutes;
+};
+static MAcc macc;
+static uint8_t saveCounter = 0;
+
 static uint32_t totalFlameSec = 0, totalStarts = 0;   // lifetime counters, saved to flash every 30 min
+static bool fsOk = false;
+
+struct HistHeader { uint32_t magic; uint16_t version, bucketSize, n, count, next, pad; };
+constexpr uint32_t HIST_MAGIC = 0x4F544731;           // "OTG1"
+
+static void saveHistory() {
+  if (!fsOk) return;
+  File f = LittleFS.open("/hist.tmp", "w");
+  if (!f) return;
+  HistHeader h = {HIST_MAGIC, 1, (uint16_t)sizeof(MBucket), MH_N, (uint16_t)mhCount, (uint16_t)mhNext, 0};
+  f.write((const uint8_t *)&h, sizeof(h));
+  f.write((const uint8_t *)mhist, sizeof(mhist));
+  f.close();
+  LittleFS.remove("/hist.bin");
+  LittleFS.rename("/hist.tmp", "/hist.bin");
+}
+
+static void loadHistory() {
+  if (!fsOk || !LittleFS.exists("/hist.bin")) return;
+  File f = LittleFS.open("/hist.bin", "r");
+  if (!f) return;
+  HistHeader h;
+  if (f.read((uint8_t *)&h, sizeof(h)) == sizeof(h) && h.magic == HIST_MAGIC && h.version == 1 &&
+      h.bucketSize == sizeof(MBucket) && h.n == MH_N && h.count <= MH_N && h.next < MH_N &&
+      f.read((uint8_t *)mhist, sizeof(mhist)) == sizeof(mhist)) {
+    mhCount = h.count;
+    mhNext = h.next;
+    Serial.printf("History restored: %d half-hour buckets\n", mhCount);
+  }
+  f.close();
+}
 
 static void clearBucket(Bucket &b) {
   b.flow = b.ret = b.room = b.out = b.req = INT16_MIN;
-  b.mod = 255;
+  b.modSec = 0;
   b.flameSec = b.chSec = b.dhwSec = b.condSec = b.starts = 0;
 }
 
 static int16_t deci(float v) { return isnan(v) ? INT16_MIN : (int16_t)lroundf(v * 10.0f); }
 static void addSat(uint8_t &v, uint8_t d) { const uint16_t s = v + d; v = s > 255 ? 255 : (uint8_t)s; }
+static int16_t avgDeci(int32_t sum, uint8_t n) { return n ? (int16_t)lroundf((float)sum / n) : INT16_MIN; }
 
 static void statsInit() {
   for (int i = 0; i < HIST_N; i++) clearBucket(hist[i]);
+  memset(mhist, 0, sizeof(mhist));
+  memset(&macc, 0, sizeof(macc));
   totalFlameSec = prefs.getUInt("tFlame", 0);
   totalStarts   = prefs.getUInt("tStarts", 0);
+  fsOk = LittleFS.begin(true);   // formats the file system on the very first boot
+  if (!fsOk) Serial.println("LittleFS not available: the 30-day history will not survive restarts");
+  loadHistory();
+}
+
+// folds a completed minute into the 30-minute accumulator; closes a half-hour bucket every 30 minutes
+static void foldMinute(const Bucket &b) {
+  const int16_t v[5] = {b.flow, b.ret, b.room, b.out, b.req};
+  for (int i = 0; i < 5; i++) if (v[i] != INT16_MIN) { macc.s[i] += v[i]; macc.n[i]++; }
+  macc.modSec += b.modSec;
+  macc.flame += b.flameSec; macc.ch += b.chSec; macc.dhw += b.dhwSec; macc.cond += b.condSec; macc.starts += b.starts;
+  if (++macc.minutes >= 30) {
+    MBucket &m = mhist[mhNext];
+    m.flow = avgDeci(macc.s[0], macc.n[0]);
+    m.ret  = avgDeci(macc.s[1], macc.n[1]);
+    m.room = avgDeci(macc.s[2], macc.n[2]);
+    m.out  = avgDeci(macc.s[3], macc.n[3]);
+    m.req  = avgDeci(macc.s[4], macc.n[4]);
+    m.starts = macc.starts > 255 ? 255 : (uint8_t)macc.starts;
+    m.pad = 0;
+    m.flameSec = macc.flame; m.chSec = macc.ch; m.dhwSec = macc.dhw; m.condSec = macc.cond;
+    m.modSec = macc.modSec;
+    mhNext = (mhNext + 1) % MH_N;
+    if (mhCount < MH_N) mhCount++;
+    memset(&macc, 0, sizeof(macc));
+    if (++saveCounter >= 2) { saveCounter = 0; saveHistory(); }   // every hour
+  }
 }
 
 // called from loop(): accumulates seconds once per second and closes a bucket every minute
@@ -466,6 +551,10 @@ static void statsTick() {
   const uint8_t dt = elapsed > 5000 ? 5 : (uint8_t)(elapsed / 1000);
 
   Bucket &c = hist[histHead];
+  if (!isnan(vMod)) {
+    const uint32_t m = (uint32_t)c.modSec + (uint32_t)lroundf(clampf(vMod, 0, 100) * dt);
+    c.modSec = m > 65535 ? 65535 : (uint16_t)m;
+  }
   if (bFlame == 1) {
     addSat(c.flameSec, dt);
     totalFlameSec += dt;
@@ -487,7 +576,7 @@ static void statsTick() {
     c.room = deci(vRoom);
     c.out  = deci(vOut);
     c.req  = deci(vChSet);
-    c.mod  = isnan(vMod) ? 255 : (uint8_t)lroundf(clampf(vMod, 0, 100));
+    foldMinute(c);
     histHead = (histHead + 1) % HIST_N;
     if (histFilled < HIST_N - 1) histFilled++;
     clearBucket(hist[histHead]);
@@ -651,7 +740,7 @@ static void handleSettings() {
   sendState();
 }
 
-// Heavy pages (statistics page, stats, history) are limited to one every 2 seconds: with a single core,
+// Heavy requests (stats, history) are limited to one every 2 seconds: with a single core,
 // a flood of Wi-Fi traffic disturbs the OpenTherm bit timing and the thermostat loses messages.
 static bool heavyAllowed() {
   static unsigned long last = 0;
@@ -664,35 +753,59 @@ static bool heavyAllowed() {
   return true;
 }
 
-// GET /api/stats: summary of the last 24 hours (or of the data collected so far)
-static void handleStats() {
-  if (!heavyAllowed()) return;
-  const int n = histFilled + 1;                       // completed buckets + the current one
-  uint32_t flame = 0, ch = 0, dhw = 0, cond = 0, starts = 0, modW = 0;
-  double modSum = 0, rSum = 0, oSum = 0;
+struct Summary {
+  uint32_t flame = 0, ch = 0, dhw = 0, cond = 0, starts = 0;
+  uint64_t modSec = 0;
+  double rSum = 0, oSum = 0;
   int rN = 0, oN = 0;
   float rMin = 1e9f, rMax = -1e9f, oMin = 1e9f, oMax = -1e9f, fMax = -1e9f;
-  for (int i = 0; i < n; i++) {
-    const Bucket &b = hist[(histHead - i + HIST_N) % HIST_N];
-    flame += b.flameSec; ch += b.chSec; dhw += b.dhwSec; cond += b.condSec; starts += b.starts;
-    if (b.mod != 255 && b.flameSec) { modSum += (double)b.mod * b.flameSec; modW += b.flameSec; }
-    if (b.room != INT16_MIN) { const float v = b.room / 10.0f; rSum += v; rN++; if (v < rMin) rMin = v; if (v > rMax) rMax = v; }
-    if (b.out != INT16_MIN)  { const float v = b.out / 10.0f;  oSum += v; oN++; if (v < oMin) oMin = v; if (v > oMax) oMax = v; }
-    if (b.flow != INT16_MIN && b.flow / 10.0f > fMax) fMax = b.flow / 10.0f;
+  void temps(int16_t flow, int16_t room, int16_t out) {
+    if (room != INT16_MIN) { const float v = room / 10.0f; rSum += v; rN++; if (v < rMin) rMin = v; if (v > rMax) rMax = v; }
+    if (out != INT16_MIN)  { const float v = out / 10.0f;  oSum += v; oN++; if (v < oMin) oMin = v; if (v > oMax) oMax = v; }
+    if (flow != INT16_MIN && flow / 10.0f > fMax) fMax = flow / 10.0f;
+  }
+};
+
+// GET /api/stats[?range=30d]: summary of the last 24 hours (default) or of the last 30 days
+static void handleStats() {
+  if (!heavyAllowed()) return;
+  const bool month = server.arg("range") == "30d";
+  Summary S;
+  int windowMinutes;
+  if (!month) {
+    const int n = histFilled + 1;                     // completed buckets + the current one
+    windowMinutes = n;
+    for (int i = 0; i < n; i++) {
+      const Bucket &b = hist[(histHead - i + HIST_N) % HIST_N];
+      S.flame += b.flameSec; S.ch += b.chSec; S.dhw += b.dhwSec; S.cond += b.condSec; S.starts += b.starts;
+      S.modSec += b.modSec;
+      S.temps(b.flow, b.room, b.out);
+    }
+  } else {
+    windowMinutes = mhCount * 30 + macc.minutes;
+    for (int i = 0; i < mhCount; i++) {
+      const MBucket &b = mhist[(mhNext - 1 - i + MH_N) % MH_N];
+      S.flame += b.flameSec; S.ch += b.chSec; S.dhw += b.dhwSec; S.cond += b.condSec; S.starts += b.starts;
+      S.modSec += b.modSec;
+      S.temps(b.flow, b.room, b.out);
+    }
+    S.flame += macc.flame; S.ch += macc.ch; S.dhw += macc.dhw; S.cond += macc.cond; S.starts += macc.starts;
+    S.modSec += macc.modSec;
   }
   JsonDocument doc;
-  doc["windowMinutes"] = n;
-  doc["flameMinutes"] = roundf(flame / 6.0f) / 10.0f;
-  doc["heatingMinutes"] = roundf(ch / 6.0f) / 10.0f;
-  doc["hotWaterMinutes"] = roundf(dhw / 6.0f) / 10.0f;
-  doc["burnerStarts"] = starts;
-  if (modW) doc["avgModulation"] = roundf((float)(modSum / modW)); else doc["avgModulation"] = nullptr;
-  if (flame) doc["condensingPercent"] = roundf(100.0f * cond / flame); else doc["condensingPercent"] = nullptr;
+  doc["range"] = month ? "30d" : "24h";
+  doc["windowMinutes"] = windowMinutes;
+  doc["flameMinutes"] = roundf(S.flame / 6.0f) / 10.0f;
+  doc["heatingMinutes"] = roundf(S.ch / 6.0f) / 10.0f;
+  doc["hotWaterMinutes"] = roundf(S.dhw / 6.0f) / 10.0f;
+  doc["burnerStarts"] = S.starts;
+  if (S.flame) doc["avgModulation"] = roundf((float)((double)S.modSec / S.flame)); else doc["avgModulation"] = nullptr;
+  if (S.flame) doc["condensingPercent"] = roundf(100.0f * S.cond / S.flame); else doc["condensingPercent"] = nullptr;
   JsonObject r = doc["room"].to<JsonObject>();
-  if (rN) { r["min"] = rMin; r["avg"] = roundf((float)(rSum / rN) * 10) / 10; r["max"] = rMax; }
+  if (S.rN) { r["min"] = S.rMin; r["avg"] = roundf((float)(S.rSum / S.rN) * 10) / 10; r["max"] = S.rMax; }
   JsonObject o = doc["outdoor"].to<JsonObject>();
-  if (oN) { o["min"] = oMin; o["avg"] = roundf((float)(oSum / oN) * 10) / 10; o["max"] = oMax; }
-  if (fMax > -1e8f) doc["flowMax"] = fMax; else doc["flowMax"] = nullptr;
+  if (S.oN) { o["min"] = S.oMin; o["avg"] = roundf((float)(S.oSum / S.oN) * 10) / 10; o["max"] = S.oMax; }
+  if (S.fMax > -1e8f) doc["flowMax"] = S.fMax; else doc["flowMax"] = nullptr;
   doc["totalFlameHours"] = roundf(totalFlameSec / 360.0f) / 10.0f;
   doc["totalBurnerStarts"] = totalStarts;
   doc["uptimeSeconds"] = millis() / 1000;
@@ -702,50 +815,59 @@ static void handleStats() {
   server.send(200, "application/json", out);
 }
 
-// GET /api/history?step=N: the 24 h history in points of N minutes (N >= 5, default 5).
-// The whole response is built in one buffer and sent with a single write: many small writes stall
-// on TCP delayed ACKs and block the OpenTherm relay for a second.
-static void appendChannel(String &s, const char *name, int n, int step, int points, bool temp, int field) {
+// One channel of GET /api/history. Points aggregate `step` buckets (average for temperatures and
+// modulation, sum for seconds and starts). `month` selects the 30-minute tier.
+static void appendChannel(String &s, const char *name, bool month, int n, int step, int points, int field) {
   s += '"'; s += name; s += "\":[";
   for (int pt = 0; pt < points; pt++) {
     const int k0 = pt * step, k1 = (k0 + step < n) ? k0 + step : n;
-    double acc = 0; int cnt = 0;
+    double acc = 0, secs = 0;
+    int cnt = 0;
     for (int k = k0; k < k1; k++) {
-      const Bucket &b = hist[(histHead - (n - 1) + k + HIST_N * 2) % HIST_N];
-      switch (field) {
-        case 0: if (b.flow != INT16_MIN) { acc += b.flow; cnt++; } break;
-        case 1: if (b.ret  != INT16_MIN) { acc += b.ret;  cnt++; } break;
-        case 2: if (b.room != INT16_MIN) { acc += b.room; cnt++; } break;
-        case 3: if (b.out  != INT16_MIN) { acc += b.out;  cnt++; } break;
-        case 4: if (b.req  != INT16_MIN) { acc += b.req;  cnt++; } break;
-        case 5: if (b.mod != 255) { acc += b.mod; cnt++; } break;
-        case 6: acc += b.flameSec; cnt = 1; break;
-        case 7: acc += b.chSec;    cnt = 1; break;
-        case 8: acc += b.dhwSec;   cnt = 1; break;
-        case 9: acc += b.starts;   cnt = 1; break;
+      int16_t v[5]; uint32_t modSec, flame, ch, dhw, starts;
+      if (!month) {
+        const Bucket &b = hist[(histHead - n + k + HIST_N * 2) % HIST_N];
+        v[0] = b.flow; v[1] = b.ret; v[2] = b.room; v[3] = b.out; v[4] = b.req;
+        modSec = b.modSec; flame = b.flameSec; ch = b.chSec; dhw = b.dhwSec; starts = b.starts; secs += 60;
+      } else {
+        const MBucket &b = mhist[(mhNext - n + k + MH_N * 2) % MH_N];
+        v[0] = b.flow; v[1] = b.ret; v[2] = b.room; v[3] = b.out; v[4] = b.req;
+        modSec = b.modSec; flame = b.flameSec; ch = b.chSec; dhw = b.dhwSec; starts = b.starts; secs += 1800;
       }
+      if (field <= 4) { if (v[field] != INT16_MIN) { acc += v[field]; cnt++; } }
+      else if (field == 5) { acc += modSec; cnt = 1; }
+      else if (field == 6) { acc += flame; cnt = 1; }
+      else if (field == 7) { acc += ch; cnt = 1; }
+      else if (field == 8) { acc += dhw; cnt = 1; }
+      else { acc += starts; cnt = 1; }
     }
     if (pt) s += ',';
     if (!cnt) s += "null";
-    else if (temp) s += String((float)(acc / cnt) / 10.0f, 1);
-    else s += String((int)lroundf((float)(acc / cnt)));
+    else if (field <= 4) s += String((float)(acc / cnt) / 10.0f, 1);
+    else if (field == 5) s += String((int)lroundf((float)(acc / secs)));      // average modulation %
+    else s += String((int)lroundf((float)acc));
   }
   s += ']';
 }
 
+// GET /api/history[?range=30d][&step=N]: 24 h history in points of N minutes (N >= 5, default 5), or
+// 30 days in points of N half-hours (N from 1 to 48, default 6 = 3 hours). One buffer, one write: many
+// small writes stall on TCP delayed ACKs and block the OpenTherm relay.
 static void handleHistory() {
   if (!heavyAllowed()) return;
-  int step = server.hasArg("step") ? server.arg("step").toInt() : 5;
-  if (step < 5) step = 5;
-  if (step > 60) step = 60;
-  const int n = histFilled + 1;
+  const bool month = server.arg("range") == "30d";
+  int step = server.hasArg("step") ? server.arg("step").toInt() : (month ? 6 : 5);
+  if (!month) { if (step < 5) step = 5; if (step > 60) step = 60; }
+  else        { if (step < 1) step = 1; if (step > 48) step = 48; }
+  const int n = month ? mhCount : histFilled;            // completed buckets only
   const int points = (n + step - 1) / step;
   String s;
-  s.reserve(points * 55 + 200);
-  s += "{\"step\":"; s += step; s += ",\"points\":"; s += points; s += ',';
+  s.reserve(points * 60 + 240);
+  s += "{\"range\":\""; s += month ? "30d" : "24h"; s += "\",\"stepMinutes\":"; s += step * (month ? 30 : 1);
+  s += ",\"points\":"; s += points; s += ',';
   const char *names[] = {"flow", "ret", "room", "out", "req", "mod", "flame", "ch", "dhw", "starts"};
   for (int i = 0; i < 10; i++) {
-    appendChannel(s, names[i], n, step, points, i <= 4, i);
+    appendChannel(s, names[i], month, n, step, points, i);
     s += (i < 9) ? ',' : '}';
   }
   server.send(200, "application/json", s);
@@ -817,7 +939,7 @@ static void handleNetwork() {
     ArduinoOTA.setHostname(HOSTNAME);
     // during the update the gateway stops relaying (the thermostat times out for a few
     // seconds): without the relaying stalls the firmware is received much faster
-    ArduinoOTA.onStart([]() { otaBusy = true; Serial.println("OTA update..."); });
+    ArduinoOTA.onStart([]() { otaBusy = true; Serial.println("OTA update..."); saveHistory(); });
     ArduinoOTA.onEnd([]() { otaBusy = false; });
     ArduinoOTA.onError([](ota_error_t) { otaBusy = false; });
     if (strlen(OTA_PASSWORD) > 0) ArduinoOTA.setPassword(OTA_PASSWORD);
@@ -870,7 +992,7 @@ void setup() {
   server.on("/api/settings", HTTP_POST, handleSettings);
   server.on("/api/ids", HTTP_GET, handleIds);
   server.on("/api/probe", HTTP_GET, handleProbe);
-  server.on("/", HTTP_GET, []() { if (heavyAllowed()) server.send_P(200, "text/html", STATS_PAGE); });
+  server.on("/", HTTP_GET, []() { server.send_P(200, "text/html", STATS_PAGE); });
   server.on("/api/stats", HTTP_GET, handleStats);
   server.on("/api/history", HTTP_GET, handleHistory);
   server.onNotFound([]() { sendError(404, "not found"); });

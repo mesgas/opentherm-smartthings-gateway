@@ -16,8 +16,10 @@ h1{font-size:18px;margin:0 0 10px}h2{font-size:14px;margin:14px 0 4px}
 canvas{width:100%;height:190px;background:#fff;border-radius:8px;box-shadow:0 1px 2px #0002}
 .leg{font-size:12px;margin:2px 0}.leg i{display:inline-block;width:10px;height:10px;margin:0 3px 0 8px;border-radius:2px}
 small{color:#888}
+#rng{margin:0 0 10px}button{border:0;border-radius:6px;padding:6px 14px;background:#dde1e6;font-size:14px}button.on{background:#2e86c1;color:#fff}
 </style></head><body>
 <h1 id="ti">OpenTherm</h1>
+<div id="rng"><button id="b24">24 h</button> <button id="b30">30 d</button></div>
 <div class="cards" id="cards"></div>
 <h2 id="h1"></h2><canvas id="c1"></canvas><div class="leg" id="l1"></div>
 <h2 id="h2"></h2><canvas id="c2"></canvas><div class="leg" id="l2"></div>
@@ -28,11 +30,11 @@ const IT=(navigator.language||'').startsWith('it');
 const T=IT?{ti:'Statistiche caldaia (ultime 24 ore)',h1:'Temperature (°C)',h2:'Modulazione e fiamma',h3:'Riscaldamento e acqua calda',
  flame:'Fiamma accesa',heat:'Riscaldamento attivo',dhw:'Acqua calda attiva',starts:'Accensioni',avgmod:'Modulazione media',cond:'In condensazione',
  room:'Casa',out:'Esterna',flow:'Mandata',ret:'Ritorno',req:'Mandata richiesta',mod:'Modulazione %',fd:'Fiamma (% del tempo)',ch:'Riscaldamento (% del tempo)',dw:'Acqua calda (% del tempo)',
- tot:'Ore fiamma totali',data:'dati disponibili',min:'min',h:'h',ago:'ore fa',now:'ora',upd:'Aggiornato ogni minuto. Lo storico si azzera se l\'ESP si riavvia.',nodata:'Nessun dato'}
+ tot:'Ore fiamma totali',data:'dati disponibili',min:'min',h:'h',ago:'ore fa',now:'ora',upd:'Aggiornato ogni minuto. Le ultime 24 ore (dettaglio al minuto) si azzerano se l\'ESP si riavvia; i 30 giorni restano.',nodata:'Nessun dato',ti30:'Statistiche caldaia (ultimi 30 giorni)',d:'g'}
 :{ti:'Boiler statistics (last 24 hours)',h1:'Temperatures (°C)',h2:'Modulation and flame',h3:'Heating and hot water',
  flame:'Flame on',heat:'Heating active',dhw:'Hot water active',starts:'Burner starts',avgmod:'Average modulation',cond:'Condensing',
  room:'House',out:'Outdoor',flow:'Flow',ret:'Return',req:'Requested flow',mod:'Modulation %',fd:'Flame (% of time)',ch:'Heating (% of time)',dw:'Hot water (% of time)',
- tot:'Total flame hours',data:'data available',min:'min',h:'h',ago:'h ago',now:'now',upd:'Refreshed every minute. History is cleared when the ESP restarts.',nodata:'No data'};
+ tot:'Total flame hours',data:'data available',min:'min',h:'h',ago:'h ago',now:'now',upd:'Refreshed every minute. The last 24 hours (per-minute detail) are cleared when the ESP restarts; the 30 days are kept.',nodata:'No data',ti30:'Boiler statistics (last 30 days)',d:'d'};
 const $=id=>document.getElementById(id);
 const fmtMin=m=>m==null?'-':(m>=120?(m/60).toFixed(1)+' '+T.h:Math.round(m)+' '+T.min);
 function card(v,l){return '<div class="card"><b>'+v+'</b><span>'+l+'</span></div>'}
@@ -47,8 +49,8 @@ function draw(cv,leg,series,opt){
  const L=34,B=18,R=6,Tp=6,pw=w-L-R,ph=h-B-Tp,X=i=>L+pw*i/Math.max(1,n-1),Y=v=>Tp+ph*(1-(v-lo)/(hi-lo));
  g.strokeStyle='#ddd';g.fillStyle='#888';g.lineWidth=1;
  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=Y(v);g.beginPath();g.moveTo(L,y);g.lineTo(w-R,y);g.stroke();g.fillText(v.toFixed(hi-lo>20?0:1),2,y+4)}
- const hrs=n*opt.step/60;
- for(let k=0;k<=4;k++){const x=L+pw*k/4,hh=hrs*(1-k/4);g.fillText(hh<0.05?T.now:'-'+hh.toFixed(0)+T.h,Math.min(x,w-30),h-4)}
+ const hrs=n*opt.step/60,dd=hrs>48;
+ for(let k=0;k<=4;k++){const x=L+pw*k/4,hh=hrs*(1-k/4);g.fillText(hh<0.05?T.now:(dd?'-'+(hh/24).toFixed(0)+T.d:'-'+hh.toFixed(0)+T.h),Math.min(x,w-30),h-4)}
  for(const s of series){
   g.strokeStyle=s.c;g.fillStyle=s.c;g.lineWidth=1.6;
   if(s.bar){const bw=Math.max(1,pw/n-0.5);s.v.forEach((x,i)=>{if(x!=null){const y=Y(x);g.fillRect(X(i)-bw/2,y,bw,Y(lo)-y)}});continue}
@@ -58,18 +60,26 @@ function draw(cv,leg,series,opt){
  }
  leg.innerHTML=series.map(s=>'<i style="background:'+s.c+'"></i>'+s.n).join('');
 }
+let RANGE='24h';
+async function jget(u){let r=await fetch(u);if(r.status==429){await new Promise(x=>setTimeout(x,2300));r=await fetch(u)}return r.json()}
+function setRange(r){RANGE=r;$('b24').className=r=='24h'?'on':'';$('b30').className=r=='30d'?'on':'';load()}
+$('b24').onclick=()=>setRange('24h');$('b30').onclick=()=>setRange('30d');
 async function load(){
  try{
-  const st=await (await fetch('/api/stats')).json(),hs=await (await fetch('/api/history?step=5')).json();
-  $('ti').textContent=T.ti;$('h1').textContent=T.h1;$('h2').textContent=T.h2;$('h3').textContent=T.h3;
+  $('b24').className=RANGE=='24h'?'on':'';$('b30').className=RANGE=='30d'?'on':'';
+  const q=RANGE=='30d'?'?range=30d':'',hq=RANGE=='30d'?'?range=30d&step=6':'?step=5';
+  const st=await jget('/api/stats'+q);
+  await new Promise(r=>setTimeout(r,2100));
+  const hs=await jget('/api/history'+hq);
+  $('ti').textContent=RANGE=='30d'?T.ti30:T.ti;$('h1').textContent=T.h1;$('h2').textContent=T.h2;$('h3').textContent=T.h3;
   $('cards').innerHTML=card(fmtMin(st.flameMinutes),T.flame)+card(fmtMin(st.heatingMinutes),T.heat)+card(fmtMin(st.hotWaterMinutes),T.dhw)
    +card(st.burnerStarts,T.starts)+card(st.avgModulation==null?'-':st.avgModulation.toFixed(0)+' %',T.avgmod)
    +card(st.condensingPercent==null?'-':st.condensingPercent.toFixed(0)+' %',T.cond)
    +card(st.totalFlameHours.toFixed(1)+' '+T.h,T.tot)+card(fmtMin(st.windowMinutes),T.data);
-  const pct=a=>a.map(x=>x==null?null:Math.min(100,x/(60*hs.step)*100));
-  draw($('c1'),$('l1'),[{n:T.room,c:'#e67e22',v:hs.room},{n:T.out,c:'#3498db',v:hs.out},{n:T.flow,c:'#c0392b',v:hs.flow},{n:T.ret,c:'#8e44ad',v:hs.ret},{n:T.req,c:'#999',v:hs.req,dash:1}],{step:hs.step});
-  draw($('c2'),$('l2'),[{n:T.fd,c:'#f5b7b1',v:pct(hs.flame),bar:1},{n:T.mod,c:'#c0392b',v:hs.mod}],{step:hs.step,min:0,max:100});
-  draw($('c3'),$('l3'),[{n:T.ch,c:'#e67e22',v:pct(hs.ch),bar:1},{n:T.dw,c:'#2e86c1',v:pct(hs.dhw)}],{step:hs.step,min:0,max:100});
+  const pct=a=>a.map(x=>x==null?null:Math.min(100,x/(60*hs.stepMinutes)*100));
+  draw($('c1'),$('l1'),[{n:T.room,c:'#e67e22',v:hs.room},{n:T.out,c:'#3498db',v:hs.out},{n:T.flow,c:'#c0392b',v:hs.flow},{n:T.ret,c:'#8e44ad',v:hs.ret},{n:T.req,c:'#999',v:hs.req,dash:1}],{step:hs.stepMinutes});
+  draw($('c2'),$('l2'),[{n:T.fd,c:'#f5b7b1',v:pct(hs.flame),bar:1},{n:T.mod,c:'#c0392b',v:hs.mod}],{step:hs.stepMinutes,min:0,max:100});
+  draw($('c3'),$('l3'),[{n:T.ch,c:'#e67e22',v:pct(hs.ch),bar:1},{n:T.dw,c:'#2e86c1',v:pct(hs.dhw)}],{step:hs.stepMinutes,min:0,max:100});
   $('ft').textContent=T.upd;
  }catch(e){$('ti').textContent='...'}
 }

@@ -147,14 +147,23 @@ Component ids in the profile are Italian technical identifiers (`main` = house, 
 
 ## Statistics page
 
-Open `http://otgw.local/` (or the IP of the ESP) in a browser on your local network. It shows, for the last
-24 hours: flame-on time, heating and hot water time, burner starts, average modulation, the share of burner time
-spent condensing (return below ~55 °C), and charts of temperatures (house, outdoor, flow, return, requested flow),
-modulation/flame and heating/hot water duty. The page is Italian or English depending on the browser language.
+Open `http://otgw.local/` (or the IP of the ESP) in a browser on your local network. Two views, switched with the
+buttons at the top:
 
-The history is kept in RAM (about 23 KB, one point per minute) and is **cleared when the ESP restarts**. Lifetime
-burner hours and starts are saved to flash every 30 minutes. Heavy pages are limited to one request every 2 seconds,
-because on a single core a flood of Wi-Fi traffic can disturb the OpenTherm timing.
+- **24 h:** one point every 5 minutes (stored per minute).
+- **30 d:** one point every 3 hours (stored every 30 minutes).
+
+Both show: flame-on time, heating and hot water time, burner starts, average modulation while the flame is on, the
+share of burner time spent condensing (return below ~55 °C), and charts of temperatures (house, outdoor, flow,
+return, requested flow), modulation/flame and heating/hot water duty. The page is Italian or English depending on
+the browser language.
+
+**Memory and persistence:** the last 24 hours are kept in RAM (about 26 KB, one bucket per minute) and are **cleared
+when the ESP restarts**. The last 30 days (about 35 KB, one bucket per 30 minutes) are also kept in RAM but are
+saved to flash (LittleFS) every hour and right before an OTA update, so they survive restarts, losing at most the
+last hour. Lifetime burner hours and starts are saved to NVS every 30 minutes. Heavy requests (`/api/stats`,
+`/api/history`) are limited to one every 2 seconds, because on a single core a flood of Wi-Fi traffic can disturb
+the OpenTherm timing. The statistics are estimates built from the data the boiler reports.
 
 ## API
 
@@ -163,7 +172,9 @@ because on a single core a flood of Wi-Fi traffic can disturb the OpenTherm timi
   `roomControl`, `roomTarget`, `flowAuto`, `outdoorEnabled`
 - `GET /api/ids` — OpenTherm IDs requested by the thermostat and rejected by the boiler
 - `GET /api/probe?id=N` — test read of one ID (read-only)
-- `GET /` — statistics page; `GET /api/stats` — 24 h summary; `GET /api/history?step=N` — 24 h history in points of N minutes (N ≥ 5)
+- `GET /` — statistics page
+- `GET /api/stats[?range=30d]` — summary of the last 24 hours (default) or 30 days
+- `GET /api/history[?range=30d][&step=N]` — history in points of N minutes (24 h, N ≥ 5) or N half-hours (30 d, N from 1 to 48)
 
 If `API_TOKEN` in `secrets.h` is not empty, POST requests need the `X-Token` header. There is no encryption:
 use it only on a trusted local network.
