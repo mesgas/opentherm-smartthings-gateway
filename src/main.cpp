@@ -31,8 +31,8 @@
 #include <LittleFS.h>
 #include <OpenTherm.h>
 #include <math.h>
+#include "secrets.h"   // first: it may override HOSTNAME
 #include "config.h"
-#include "secrets.h"
 #include "webpage.h"
 
 // ===========================================================================

@@ -83,6 +83,9 @@ the node connected to GPIO3. Enable it only after wiring it: `POST /api/settings
    (set `upload_port` in `platformio.ini`).
 3. The serial monitor (115200) shows the IP, the relayed messages and the IDs requested by the thermostat.
 4. Give the ESP a **fixed IP** in your router.
+5. Optional: the ESP is reachable as `http://otgw.local/`. To change the name, add `#define HOSTNAME "my-boiler"` to `src/secrets.h`
+   (and use it as `upload_port` in `platformio.ini`). Some phones cannot resolve `.local` names: use the IP address, or add a
+   static DNS entry in your router.
 
 Every boiler supports different OpenTherm IDs: use `GET /api/probe?id=N` to test yours and adapt
 `POLL_IDS` in `config.h`.

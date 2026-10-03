@@ -24,7 +24,9 @@ constexpr unsigned long OUTDOOR_READ_MS = 10000;
 // ---------------------------------------------------------------------------
 // Network
 // ---------------------------------------------------------------------------
-#define HOSTNAME "otgw"        // http://otgw.local/api/state
+#ifndef HOSTNAME              // can be overridden in secrets.h
+#define HOSTNAME "otgw"        // http://otgw.local/
+#endif
 constexpr uint16_t HTTP_PORT = 80;
 
 // ---------------------------------------------------------------------------

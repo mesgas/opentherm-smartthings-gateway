@@ -10,3 +10,6 @@
 
 // If not empty, it protects the over-the-air (OTA) update.
 #define OTA_PASSWORD  ""
+
+// Optional: name of the ESP on the local network (default "otgw" -> http://otgw.local/).
+// #define HOSTNAME "my-boiler"
