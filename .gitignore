@@ -2,3 +2,10 @@
 .vscode/
 tools/
 src/secrets.h
+
+# KiCad scratch
+hardware/build/
+hardware/*.kicad_prl
+hardware/*-backups/
+hardware/fp-info-cache
+hardware/production/gerber/

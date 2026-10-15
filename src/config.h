@@ -1,5 +1,15 @@
 #pragma once
 
+#ifdef BOARD_GATEWAY_PCB
+// ---------------------------------------------------------------------------
+// Custom gateway PCB (hardware/): ESP32-C3-WROOM-02
+// ---------------------------------------------------------------------------
+constexpr int PIN_M_IN  = 4;   // optocoupler U3: line from the boiler
+constexpr int PIN_M_OUT = 5;   // optocoupler U2: line towards the boiler
+constexpr int PIN_S_IN  = 6;   // thermostat side: OT input
+constexpr int PIN_S_OUT = 7;   // thermostat side: OT output
+constexpr int PIN_USER_LED = 10;
+#else
 // ---------------------------------------------------------------------------
 // LOLIN C3 mini pins (D1 mini positions of the DIYLess shields)
 // ---------------------------------------------------------------------------
@@ -7,12 +17,13 @@ constexpr int PIN_M_IN  = 8;   // D2  master shield (towards the boiler): OT inp
 constexpr int PIN_M_OUT = 10;  // D1  master shield: OT output
 constexpr int PIN_S_IN  = 0;   // D6  slave shield (towards the thermostat): OT input
 constexpr int PIN_S_OUT = 4;   // D7  slave shield: OT output
+#endif
 
 // ---------------------------------------------------------------------------
 // NTC outdoor probe (TEWA TT05-10KC8-1S-T105-1500: 10 kOhm at 25 C, B25/85 = 3435 K)
 // Divider: 3V3 - R_FIXED - [node -> PIN_NTC] - NTC - GND, with 100 nF between node and GND
 // ---------------------------------------------------------------------------
-constexpr int   PIN_NTC        = 3;       // "A0" position of the D1 mini = GPIO3 (ADC1)
+constexpr int   PIN_NTC        = 3;       // GPIO3 (ADC1): "A0" of the D1 mini / J6 of the gateway PCB
 constexpr float NTC_R_FIXED    = 10000;   // fixed resistor to 3V3 (ohm), preferably 0.1-1 %
 constexpr float NTC_R0         = 10000;   // probe resistance at NTC_T0
 constexpr float NTC_T0         = 25;

@@ -1,0 +1,5878 @@
+(kicad_sch
+	(version 20260101)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "6b2b39de-3f73-4fba-bd98-9b549d9757c5")
+	(paper "A0")
+	(title_block
+		(title "OpenTherm gateway")
+		(rev "A")
+		(comment 1 "Derived from the MPro Arduino OpenTherm shield (CERN-OHL-P-2.0)")
+	)
+	(lib_symbols
+	(symbol "Local:MT3540"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U" (at 0 8.89 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MT3540" (at 0 -8.89 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "1.2 MHz boost converter" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(symbol "MT3540_0_1"
+			(rectangle (start -5.08 7.62) (end 5.08 -7.62) (stroke (width 0.254) (type default)) (fill (type background)))
+		)
+		(symbol "MT3540_1_1"
+			(pin passive line (at -7.62 5.08 0) (length 2.54) (name "SW" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 0 -10.16 90) (length 2.54) (name "GND" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			(pin input line (at 7.62 -2.54 180) (length 2.54) (name "FB" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
+			(pin input line (at -7.62 -2.54 0) (length 2.54) (name "EN" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+			(pin power_in line (at 0 10.16 270) (length 2.54) (name "VIN" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))
+		)
+	)
+	(symbol "Device:L"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "L"
+			(at -1.27 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "L"
+			(at 1.905 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Inductor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "inductor choke coil reactor magnetic"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Choke_* *Coil* Inductor_* L_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "L_0_1"
+			(arc
+				(start 0 2.54)
+				(mid 0.6323 1.905)
+				(end 0 1.27)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 1.27)
+				(mid 0.6323 0.635)
+				(end 0 0)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 0)
+				(mid 0.6323 -0.635)
+				(end 0 -1.27)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0 -1.27)
+				(mid 0.6323 -1.905)
+				(end 0 -2.54)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "L_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 1.27)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 1.27)
+				(name "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:D_Schottky"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D_Schottky"
+			(at 0 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Schottky diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "diode Schottky"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "D_Schottky_0_1"
+			(polyline
+				(pts
+					(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 0) (xy -1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "D_Schottky_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:R"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "R"
+			(at 2.032 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 0 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at -1.778 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "R res resistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "R_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "R_0_1"
+			(rectangle
+				(start -1.016 -2.54)
+				(end 1.016 2.54)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "R_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 1.27)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 1.27)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:C"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.635 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C"
+			(at 0.635 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0.9652 -3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "cap capacitor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "C_0_1"
+			(polyline
+				(pts
+					(xy -2.032 0.762) (xy 2.032 0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.032 -0.762) (xy 2.032 -0.762)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_1_1"
+			(pin passive line
+				(at 0 3.81 270)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -3.81 90)
+				(length 2.794)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Connector:Screw_Terminal_01x02"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "J"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Screw_Terminal_01x02"
+			(at 0 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "screw terminal"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TerminalBlock*:*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Screw_Terminal_01x02_1_1"
+			(rectangle
+				(start -1.27 1.27)
+				(end 1.27 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.5334 0.3302) (xy 0.3302 -0.508)
+				)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
+				)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.3556 0.508) (xy 0.508 -0.3302)
+				)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.3556 -2.032) (xy 0.508 -2.8702)
+				)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 0 0)
+				(radius 0.635)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 0 -2.54)
+				(radius 0.635)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:D"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D"
+			(at 0 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "D_0_1"
+			(polyline
+				(pts
+					(xy -1.27 1.27) (xy -1.27 -1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 0) (xy -1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "D_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:D_Zener"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D_Zener"
+			(at 0 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Zener diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "D_Zener_0_1"
+			(polyline
+				(pts
+					(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 0) (xy -1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "D_Zener_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Transistor_BJT:MMBT3906"
+		(property "Reference" "Q"
+			(at 5.08 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT3906"
+			(at 5.08 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 5.08 -1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/pzt3906-d.pdf"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "-0.2A Ic, -40V Vce, Small Signal PNP Transistor, SOT-23"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "PNP Transistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "SOT?23*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(embedded_fonts no)
+				(symbol "MMBT3906_0_1"
+			(polyline
+				(pts
+					(xy -2.54 0) (xy 0.635 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 1.905) (xy 0.635 -1.905)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 0.635) (xy 2.54 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 -0.635) (xy 2.54 -2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 1.27 0)
+				(radius 2.8194)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.286 -1.778) (xy 1.778 -2.286) (xy 1.27 -1.27) (xy 2.286 -1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+		)
+				(symbol "MMBT3906_1_1"
+			(pin input line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "B"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 -5.08 90)
+				(length 2.54)
+				(name "E"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 5.08 270)
+				(length 2.54)
+				(name "C"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "Isolator:LTV-817S"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at -3.81 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LTV-817S"
+			(at 0 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:SMDIP-4_W9.53mm"
+			(at 0 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF"
+			(at -8.89 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "DC Optocoupler, Vce 35V, CTR 50%, SMDIP-4"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "NPN DC Optocoupler"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "SMDIP*W9.53mm*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "LTV-817S_1_1"
+			(rectangle
+				(start -5.08 3.81)
+				(end 5.08 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(polyline
+				(pts
+					(xy -5.08 2.54) (xy -2.54 2.54) (xy -2.54 -0.762)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -3.175 -0.635) (xy -1.905 -0.635)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.54 -0.635) (xy -2.54 -2.54) (xy -5.08 -2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.54 -0.635) (xy -3.175 0.635) (xy -1.905 0.635) (xy -2.54 -0.635)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.508 0.508) (xy 0.762 0.508) (xy 0.381 0.381) (xy 0.381 0.635) (xy 0.762 0.508)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.508 -0.508) (xy 0.762 -0.508) (xy 0.381 -0.635) (xy 0.381 -0.381) (xy 0.762 -0.508)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.54 1.905) (xy 2.54 -1.905)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.54 0.635) (xy 4.445 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 3.048 -1.651) (xy 3.556 -1.143) (xy 4.064 -2.159) (xy 3.048 -1.651)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 4.445 2.54) (xy 5.08 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 4.445 -2.54) (xy 2.54 -0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 4.445 -2.54) (xy 5.08 -2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -7.62 2.54 0)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -7.62 -2.54 0)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 -2.54 180)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 2.54 180)
+				(length 2.54)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Device:D_TVS"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "D_TVS"
+			(at 0 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional transient-voltage-suppression diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "diode TVS thyrector"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "D_TVS_0_1"
+			(polyline
+				(pts
+					(xy -2.54 1.27) (xy -2.54 -1.27) (xy 2.54 1.27) (xy 2.54 -1.27) (xy -2.54 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.508 1.27) (xy 0 1.27) (xy 0 -1.27) (xy -0.508 -1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 0) (xy -1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "D_TVS_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "A1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Transistor_BJT:MMBT2222A"
+		(property "Reference" "Q"
+			(at 5.08 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MMBT2222A"
+			(at 5.08 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 5.08 -1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/MMBT2222A.pdf"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "600mA Ic, 40V Vce, NPN Transistor, SOT-23"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "NPN Transistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "SOT?23*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(embedded_fonts no)
+				(symbol "MMBT2222A_0_1"
+			(polyline
+				(pts
+					(xy -2.54 0) (xy 0.635 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 1.905) (xy 0.635 -1.905)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 1.27 0)
+				(radius 2.8194)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+				(symbol "MMBT2222A_1_1"
+			(polyline
+				(pts
+					(xy 0.635 0.635) (xy 2.54 2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.635 -0.635) (xy 2.54 -2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(pin input line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "B"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 -5.08 90)
+				(length 2.54)
+				(name "E"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 5.08 270)
+				(length 2.54)
+				(name "C"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "Device:LED"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LED"
+			(at 0 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "LED diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "LED_0_1"
+			(polyline
+				(pts
+					(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 0) (xy 1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 -1.27) (xy -1.27 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "LED_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "RF_Module:ESP32-C3-WROOM-02"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at -12.192 21.336 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ESP32-C3-WROOM-02"
+			(at 12.192 21.336 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "RF_Module:ESP32-C3-WROOM-02"
+			(at 0 0.635 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf"
+			(at 0 0.635 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "802.11 b/g/n Wi­Fi and Bluetooth 5 module, ESP32­C3 SoC, RISC­V microprocessor, On-board antenna"
+			(at 0 0.635 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "esp32 espressif WiFi Bluetooth LE"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "ESP32?C3*WROOM?02*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "ESP32-C3-WROOM-02_1_1"
+			(rectangle
+				(start -12.7 20.32)
+				(end 12.7 -20.32)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin power_in line
+				(at 0 22.86 270)
+				(length 2.54)
+				(name "3V3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -15.24 17.78 0)
+				(length 2.54)
+				(name "EN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 2.54 0)
+				(length 2.54)
+				(name "IO4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 0 0)
+				(length 2.54)
+				(name "IO5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -2.54 0)
+				(length 2.54)
+				(name "IO6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -5.08 0)
+				(length 2.54)
+				(name "IO7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -7.62 0)
+				(length 2.54)
+				(name "IO8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -10.16 0)
+				(length 2.54)
+				(name "IO9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 0 -22.86 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -12.7 0)
+				(length 2.54)
+				(name "IO10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 17.78 180)
+				(length 2.54)
+				(name "IO20/RXD"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "11"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 15.24 180)
+				(length 2.54)
+				(name "IO21/TXD"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -15.24 0)
+				(length 2.54)
+				(name "IO18"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "13"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 -17.78 0)
+				(length 2.54)
+				(name "IO19"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "14"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 5.08 0)
+				(length 2.54)
+				(name "IO3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "15"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 7.62 0)
+				(length 2.54)
+				(name "IO2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "16"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 10.16 0)
+				(length 2.54)
+				(name "IO1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "17"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at -15.24 12.7 0)
+				(length 2.54)
+				(name "IO0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "18"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -22.86 90)
+				(length 2.54)
+				(hide yes)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "19"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Switch:SW_Push"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "SW"
+			(at 1.27 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 0 -1.524 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "switch normally-open pushbutton push-button"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "SW_Push_0_1"
+			(circle
+				(center -2.032 0)
+				(radius 0.508)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 1.27) (xy 0 3.048)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 2.032 0)
+				(radius 0.508)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.54 1.27) (xy -2.54 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 0 180)
+				(length 2.54)
+				(name "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Connector:USB_C_Receptacle_USB2.0_16P"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "J"
+			(at 0 22.225 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "USB_C_Receptacle_USB2.0_16P"
+			(at 0 19.685 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 3.81 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.usb.org/sites/default/files/documents/usb_type-c.zip"
+			(at 3.81 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "USB 2.0-only 16P Type-C Receptacle connector"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "usb universal serial bus type-C USB2.0"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "USB*C*Receptacle*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "USB_C_Receptacle_USB2.0_16P_0_0"
+			(rectangle
+				(start -0.254 -17.78)
+				(end 0.254 -16.764)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 15.494)
+				(end 9.144 14.986)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 10.414)
+				(end 9.144 9.906)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 7.874)
+				(end 9.144 7.366)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 2.794)
+				(end 9.144 2.286)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 0.254)
+				(end 9.144 -0.254)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 -2.286)
+				(end 9.144 -2.794)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 -4.826)
+				(end 9.144 -5.334)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 -12.446)
+				(end 9.144 -12.954)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 10.16 -14.986)
+				(end 9.144 -15.494)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "USB_C_Receptacle_USB2.0_16P_0_1"
+			(rectangle
+				(start -10.16 17.78)
+				(end 10.16 -17.78)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(polyline
+				(pts
+					(xy -8.89 -3.81) (xy -8.89 3.81)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -7.62 -3.81)
+				(end -6.35 3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(arc
+				(start -7.62 3.81)
+				(mid -6.985 4.4423)
+				(end -6.35 3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -7.62 3.81)
+				(mid -6.985 4.4423)
+				(end -6.35 3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(arc
+				(start -8.89 3.81)
+				(mid -6.985 5.7067)
+				(end -5.08 3.81)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -5.08 -3.81)
+				(mid -6.985 -5.7067)
+				(end -8.89 -3.81)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -6.35 -3.81)
+				(mid -6.985 -4.4423)
+				(end -7.62 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -6.35 -3.81)
+				(mid -6.985 -4.4423)
+				(end -7.62 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy -5.08 3.81) (xy -5.08 -3.81)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center -2.54 1.143)
+				(radius 0.635)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 4.318) (xy 0 6.858) (xy 1.27 4.318) (xy -1.27 4.318)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 -2.032) (xy 2.54 0.508) (xy 2.54 1.778)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 -3.302) (xy -2.54 -0.762) (xy -2.54 0.508)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 -5.842) (xy 0 4.318)
+				)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 0 -5.842)
+				(radius 1.27)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(rectangle
+				(start 1.905 1.778)
+				(end 3.175 3.048)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+		)
+		(symbol "USB_C_Receptacle_USB2.0_16P_1_1"
+			(pin passive line
+				(at 0 -22.86 90)
+				(length 5.08)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 15.24 15.24 180)
+				(length 5.08)
+				(name "VBUS"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 10.16 180)
+				(length 5.08)
+				(name "CC1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 -2.54 180)
+				(length 5.08)
+				(name "D+"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 2.54 180)
+				(length 5.08)
+				(name "D-"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 -12.7 180)
+				(length 5.08)
+				(name "SBU1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 15.24 15.24 180)
+				(length 5.08)
+				(hide yes)
+				(name "VBUS"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -22.86 90)
+				(length 5.08)
+				(hide yes)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "A12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -22.86 90)
+				(length 5.08)
+				(hide yes)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 15.24 15.24 180)
+				(length 5.08)
+				(hide yes)
+				(name "VBUS"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 7.62 180)
+				(length 5.08)
+				(name "CC2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 -5.08 180)
+				(length 5.08)
+				(name "D+"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 0 180)
+				(length 5.08)
+				(name "D-"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 15.24 -15.24 180)
+				(length 5.08)
+				(name "SBU2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 15.24 15.24 180)
+				(length 5.08)
+				(hide yes)
+				(name "VBUS"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -22.86 90)
+				(length 5.08)
+				(hide yes)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "B12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -7.62 -22.86 90)
+				(length 5.08)
+				(name "SHIELD"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "SH"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Regulator_Linear:AP2112K-3.3"
+		(property "Reference" "U"
+			(at -5.08 5.715 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "AP2112K-3.3"
+			(at 0 5.715 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+			(at 0 8.255 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/AP2112.pdf"
+			(at 0 2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "600mA low dropout linear regulator, with enable pin, 3.8V-6V input voltage range, 3.3V fixed positive output, SOT-23-5"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "linear regulator ldo fixed positive"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "SOT?23?5*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(embedded_fonts no)
+				(symbol "AP2112K-3.3_0_1"
+			(rectangle
+				(start -5.08 4.445)
+				(end 5.08 -5.08)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+		)
+				(symbol "AP2112K-3.3_1_1"
+			(pin power_in line
+				(at -7.62 2.54 0)
+				(length 2.54)
+				(name "VIN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 0 -7.62 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -7.62 0 0)
+				(length 2.54)
+				(name "EN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin no_connect line
+				(at 5.08 0 180)
+				(length 2.54)
+				(hide yes)
+				(name "NC"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 7.62 2.54 180)
+				(length 2.54)
+				(name "VOUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "Power_Protection:USBLC6-2SC6"
+		(property "Reference" "U"
+			(at 0.635 5.715 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "USBLC6-2SC6"
+			(at 0.635 3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+			(at 1.27 -6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.st.com/resource/en/datasheet/usblc6-2.pdf"
+			(at 1.27 -8.255 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "usb ethernet video"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "SOT?23*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(embedded_fonts no)
+				(symbol "USBLC6-2SC6_0_0"
+			(circle
+				(center -1.524 0)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center -0.508 2.032)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center -0.508 -4.572)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 0.508 2.032)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 0.508 -4.572)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(circle
+				(center 1.524 -2.54)
+				(radius 0.0001)
+				(stroke
+					(width 0.508)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+				(symbol "USBLC6-2SC6_0_1"
+			(polyline
+				(pts
+					(xy -2.54 0) (xy 2.54 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.54 -2.54) (xy 2.54 -2.54)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.032 0.508) (xy -1.016 0.508) (xy -1.524 1.524) (xy -2.032 0.508)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -2.032 -3.048) (xy -1.016 -3.048)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.016 1.524) (xy -2.032 1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.016 -4.064) (xy -2.032 -4.064) (xy -1.524 -3.048) (xy -1.016 -4.064)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.508 -1.143) (xy -0.508 -0.762) (xy 0.508 -0.762)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy -0.508 2.032) (xy 0.508 2.032) (xy 0 1.524) (xy 0 -4.064) (xy -0.508 -4.572) (xy 0.508 -4.572)
+					(xy 0 -5.08)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.508 -1.778) (xy -0.508 -1.778) (xy 0 -0.762) (xy 0.508 -1.778)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.016 1.524) (xy 2.032 1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.016 -3.048) (xy 2.032 -3.048)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.032 0.508) (xy 1.016 0.508) (xy 1.524 1.524) (xy 2.032 0.508)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.032 -4.064) (xy 1.016 -4.064) (xy 1.524 -3.048) (xy 2.032 -4.064)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+				(symbol "USBLC6-2SC6_1_1"
+			(rectangle
+				(start -2.54 2.794)
+				(end 2.54 -5.334)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(polyline
+				(pts
+					(xy -0.508 2.032) (xy -1.524 2.032) (xy -1.524 -4.572) (xy -0.508 -4.572)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.508 -4.572) (xy 1.524 -4.572) (xy 1.524 2.032) (xy 0.508 2.032)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 2.54)
+				(name "I/O1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -7.62 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 2.54)
+				(name "I/O2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 -2.54 180)
+				(length 2.54)
+				(name "I/O2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 5.08 270)
+				(length 2.54)
+				(name "VBUS"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 0 180)
+				(length 2.54)
+				(name "I/O1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "Connector:TestPoint"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.762)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "TP"
+			(at 0 6.858 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 5.08 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 5.08 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "test point tp"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Pin* Test*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "TestPoint_0_1"
+			(circle
+				(center 0 3.302)
+				(radius 0.762)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "TestPoint_1_1"
+			(pin passive line
+				(at 0 0 90)
+				(length 2.54)
+				(name "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "Mechanical:MountingHole"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "H"
+			(at 0 5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 3.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "mounting hole"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "MountingHole*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "MountingHole_0_1"
+			(circle
+				(center 0 0)
+				(radius 1.27)
+				(stroke
+					(width 1.27)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "power:PWR_FLAG"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#FLG"
+			(at 0 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 0 3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "flag power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_0"
+			(pin power_out line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	)
+	(symbol (lib_id "Connector:Screw_Terminal_01x02") (at 45.72 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "4e8a394e-1dca-4935-9e3b-6e48718f92b4")
+		(property "Reference" "J1" (at 48.72 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "BOILER" (at 48.72 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TerminalBlock_4Ucon:TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal" (at 45.72 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 45.72 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a143eb65-d3af-4359-9e45-9991faa7b55b"))
+		(pin "2" (uuid "1b0517df-6617-4c35-9740-39ba68622c49"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "J1") (unit 1))))
+	)
+	(label "B1" (at 40.64 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "46b6c639-e5e6-4b5b-a0bc-3ea6d68e183a"))
+	(label "B2" (at 40.64 50.80 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "8aad2042-d202-4ce8-998c-2cb95fe8197e"))
+	(symbol (lib_id "Connector:Screw_Terminal_01x02") (at 76.20 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "29e5545f-8d6a-47ed-b5c9-76d734ae6138")
+		(property "Reference" "J2" (at 79.20 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "THERM" (at 79.20 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TerminalBlock_4Ucon:TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal" (at 76.20 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 76.20 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "513894ee-1d73-4edc-b5ce-df202e36b747"))
+		(pin "2" (uuid "9bd70030-dbe9-4c93-bfed-28f363b8f7ac"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "J2") (unit 1))))
+	)
+	(label "TPLUS" (at 71.12 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "89cec06a-1e2f-4888-9fd7-31484949c5c3"))
+	(label "GND" (at 71.12 50.80 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "55f52b4e-85b4-43c1-99c0-8e06edb7e44d"))
+	(symbol (lib_id "Connector:USB_C_Receptacle_USB2.0_16P") (at 109.22 63.50 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "15e319c4-9ae7-48aa-b1d7-ee4988e18597")
+		(property "Reference" "J3" (at 112.22 59.50 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "USB-C" (at 112.22 67.50 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12" (at 109.22 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 109.22 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C165948" (at 109.22 63.50 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "A1" (uuid "8ef2dcbe-2546-4c60-bde7-4c043c4c8a5a"))
+		(pin "A4" (uuid "2af4b1fd-8b81-420d-8be7-995bc1f12605"))
+		(pin "A5" (uuid "17db85ad-46c3-4502-bf56-a6367e39adc2"))
+		(pin "A6" (uuid "7369b1cd-1d08-42a1-b69d-44d220220f41"))
+		(pin "A7" (uuid "d1e28a22-108f-4c3a-9d79-cebd56041440"))
+		(pin "A8" (uuid "53475eca-bd92-46e9-8cf2-69b46cc42295"))
+		(pin "A9" (uuid "410d5ddc-76bf-4b10-b6a3-eee3f4c46792"))
+		(pin "A12" (uuid "19f03bcb-3ee1-4ed2-99f3-5c6936da5ad6"))
+		(pin "B1" (uuid "22e565f6-06f7-4b86-b4a5-0af905f53b4b"))
+		(pin "B4" (uuid "217f01fa-fa58-40b9-aaad-56db239cfe34"))
+		(pin "B5" (uuid "29a48268-3ca5-4c4c-b906-6d8b4acd17ca"))
+		(pin "B6" (uuid "ddf05bfb-90e8-4172-a43e-c3c03d024dc3"))
+		(pin "B7" (uuid "f5fcf6e7-c875-4f28-8d51-eb8c9c81ae72"))
+		(pin "B8" (uuid "2033e889-9746-422e-a7ac-a43930226373"))
+		(pin "B9" (uuid "999faeb3-84e2-4f7c-8dd9-5595e3710153"))
+		(pin "B12" (uuid "ebd39da5-3dcc-465e-ac9c-7d52243175e9"))
+		(pin "SH" (uuid "5ba9fc61-ed3a-4c5a-b64b-7e302d5708e6"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "J3") (unit 1))))
+	)
+	(label "GND" (at 109.22 86.36 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fbc5753d-117f-4605-8278-fa97df6bb20a"))
+	(label "VBUS" (at 124.46 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e92717b2-d97f-4333-a00b-d56d79260511"))
+	(label "CC1" (at 124.46 53.34 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "36bb8493-6aa0-41c3-9315-375395b03bb6"))
+	(label "USB_DP" (at 124.46 66.04 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "b501dfa4-0a9a-4c66-b806-95483011a580"))
+	(label "USB_DM" (at 124.46 60.96 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "bd62e7bb-05e3-4fa4-a2b6-b1e1e0306e66"))
+	(no_connect (at 124.46 76.20) (uuid "83ed64b6-5185-4341-b05d-e7228a07283c"))
+	(label "VBUS" (at 124.46 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "5e17d8ee-e837-4da5-b5db-771e2c097969"))
+	(label "GND" (at 109.22 86.36 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "6dcad79d-7fbc-4b53-ad60-d1b99bdd1644"))
+	(label "GND" (at 109.22 86.36 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "1caa7948-d0e8-4574-8be3-89bd82d43612"))
+	(label "VBUS" (at 124.46 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "ead513ae-631e-44f2-8386-44416b84bc45"))
+	(label "CC2" (at 124.46 55.88 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "8495b098-f69c-4633-bf6b-2409297d9d1a"))
+	(label "USB_DP" (at 124.46 68.58 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "a820b7ea-3392-48ad-a45e-8ed65512e518"))
+	(label "USB_DM" (at 124.46 63.50 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "6c4f42a2-e950-4fc0-8b6e-6113bc9df2d0"))
+	(no_connect (at 124.46 78.74) (uuid "f5b4209b-9347-49c4-b425-67c3933c0a95"))
+	(label "VBUS" (at 124.46 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "70f709bf-c2a7-465c-b791-6a6ed4d513df"))
+	(label "GND" (at 109.22 86.36 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "67f79f30-1450-4a25-abba-dd72605d3201"))
+	(label "GND" (at 101.60 86.36 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "56b278d2-28e0-44f5-915f-358473033e16"))
+	(symbol (lib_id "Connector:Screw_Terminal_01x02") (at 157.48 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "ddd5c8c9-f188-41c3-8129-a46ed4612d26")
+		(property "Reference" "J5" (at 160.48 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "5V IN" (at 160.48 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TerminalBlock_4Ucon:TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal" (at 157.48 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 157.48 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "f48d65a0-c2ef-4a15-a2f8-0d721b2c9f2c"))
+		(pin "2" (uuid "5023d21b-cd3c-4ce3-bc17-165bb182c2ce"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "J5") (unit 1))))
+	)
+	(label "5V_IN" (at 152.40 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "e0d46795-e17a-4691-a372-bc4003cf22b9"))
+	(label "GND" (at 152.40 50.80 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fd895c2a-08f8-4622-b1d6-a3e5a6a33ee7"))
+	(symbol (lib_id "Connector:Screw_Terminal_01x02") (at 187.96 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "0a1d08b4-3d1f-4592-8de9-8c781e9512ae")
+		(property "Reference" "J6" (at 190.96 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "NTC" (at 190.96 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TerminalBlock_4Ucon:TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal" (at 187.96 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 187.96 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c9ab39de-b422-4c55-9d3f-d8d6cbc53aef"))
+		(pin "2" (uuid "ef1ce9ec-12c7-4da0-a357-80b63be43db9"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "J6") (unit 1))))
+	)
+	(label "NTC_ADC" (at 182.88 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "1046a311-369e-4382-b744-943d6732dd91"))
+	(label "GND" (at 182.88 50.80 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "2a26f689-5ff9-4c05-baf9-64f160b3d909"))
+	(symbol (lib_id "Local:MT3540") (at 220.98 58.42 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "17a2c305-6b38-4879-95ca-dbbea486c524")
+		(property "Reference" "U1" (at 223.98 54.42 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MT3540-F23" (at 223.98 62.42 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (at 220.98 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 220.98 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C181783" (at 220.98 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c4af529c-4b9b-4a2f-9f06-a64a2b1a0175"))
+		(pin "2" (uuid "2a3ab85f-f8ce-4712-a3a8-4ab8c8d48b18"))
+		(pin "3" (uuid "8176bd3f-1cbf-46f7-bedb-56e47f4337d1"))
+		(pin "4" (uuid "acd835b4-4f17-45e0-a4a2-3cf977840069"))
+		(pin "5" (uuid "cf84620d-07f5-48b8-8019-cdf79b1f7541"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U1") (unit 1))))
+	)
+	(label "SW" (at 213.36 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fb4fce6f-0cf5-4877-aae5-c4bf4bbbc330"))
+	(label "GND" (at 220.98 68.58 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "4848b86a-8cbc-45f6-8a13-5081ee8ba909"))
+	(label "FB" (at 228.60 60.96 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "c3bcd2f5-304a-498b-ad41-de2c077743af"))
+	(label "+5V" (at 213.36 60.96 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "db696c07-71a5-4557-ac48-5dabba39040b"))
+	(label "+5V" (at 220.98 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "ae80e5d4-d685-42f4-ae1f-65459705b912"))
+	(symbol (lib_id "Isolator:LTV-817S") (at 266.70 50.80 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "56b1e3c1-fe8d-4ea0-b457-93fccfa95097")
+		(property "Reference" "U2" (at 269.70 46.80 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "LTV-817S" (at 269.70 54.80 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_DIP:SMDIP-4_W9.53mm" (at 266.70 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 266.70 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C109227" (at 266.70 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "f2a556ad-4342-4704-8e3b-8e02737706b9"))
+		(pin "2" (uuid "c338a548-e1ac-416b-b741-dd1089069450"))
+		(pin "3" (uuid "3abe6f81-3fa5-4a17-8dc9-46def18f69cc"))
+		(pin "4" (uuid "699dabf9-0728-4ff4-a292-0f901b68604f"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U2") (unit 1))))
+	)
+	(label "N_R6U2" (at 259.08 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "726715e0-bd8c-4980-8268-b49c0d41256c"))
+	(label "SLAVE_OUT" (at 259.08 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "96397eb0-0280-4add-873d-4c474affec9b"))
+	(label "N_D8K" (at 274.32 53.34 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e5b5bf35-57ef-4e39-9e19-ee5b61e47a07"))
+	(label "N_D7K" (at 274.32 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "df35414f-9d7d-4599-873e-0c1eba7eb962"))
+	(symbol (lib_id "Isolator:LTV-817S") (at 312.42 50.80 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1033dea0-36d9-45aa-aebe-1da7b246787e")
+		(property "Reference" "U3" (at 315.42 46.80 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "LTV-817S" (at 315.42 54.80 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_DIP:SMDIP-4_W9.53mm" (at 312.42 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 312.42 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C109227" (at 312.42 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "8dbba6c9-ecd4-4322-90de-5ec97afb1f32"))
+		(pin "2" (uuid "6ef41a6e-699d-49f2-a5f7-42691c59be9f"))
+		(pin "3" (uuid "9c58ffe2-748a-4c66-a7c8-f442c374d83a"))
+		(pin "4" (uuid "ed991288-0efd-4081-9220-a304c5e88fe0"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U3") (unit 1))))
+	)
+	(label "N_R4R5" (at 304.80 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "cd101774-c590-4e4d-b049-868d5c3fbe01"))
+	(label "OTRTN" (at 304.80 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d8caf8be-7c14-4d7a-a201-49712484ec4b"))
+	(label "SLAVE_IN" (at 320.04 53.34 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "cc87ed3f-7cad-41d7-812f-f1c2684436f4"))
+	(label "+3V3" (at 320.04 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "2198b2a1-54c5-4036-b0cc-b6e68e0b31cf"))
+	(symbol (lib_id "RF_Module:ESP32-C3-WROOM-02") (at 363.22 71.12 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "81325099-8c33-402b-bd3e-a66b97798239")
+		(property "Reference" "U4" (at 366.22 67.12 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "ESP32-C3-WROOM-02-N4" (at 366.22 75.12 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "RF_Module:ESP32-C3-WROOM-02" (at 363.22 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 363.22 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C2934569" (at 363.22 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "66aea860-b9d4-455a-a3d1-9ed834d9b496"))
+		(pin "2" (uuid "73e557e5-5c80-4330-b306-70a0801d4fe3"))
+		(pin "3" (uuid "95369e43-1da0-48c4-9108-8552a7ea5cab"))
+		(pin "4" (uuid "2e2a01d4-3241-4c5d-8274-73721b659e24"))
+		(pin "5" (uuid "b62bb27f-6831-455c-8ba2-4b5eb0783fe3"))
+		(pin "6" (uuid "459ab8d7-c0d8-415d-86e5-8d9f10c9325b"))
+		(pin "7" (uuid "6105be10-5120-4e31-abdf-e3356b722833"))
+		(pin "8" (uuid "65ab1f4b-2c74-4a6e-86c3-bfead20d0ac1"))
+		(pin "9" (uuid "7dbecff8-129e-49d5-84b8-fb59820f49fa"))
+		(pin "10" (uuid "15851d73-c52c-4a45-a2eb-05915550dd34"))
+		(pin "11" (uuid "b365f952-ef22-4b86-890a-030f456ce30c"))
+		(pin "12" (uuid "a5567e50-ae20-4324-b33d-18096be38859"))
+		(pin "13" (uuid "bbffad90-4310-4c81-bb7b-8af8f3cdbb9b"))
+		(pin "14" (uuid "3ac5528e-5cc8-4609-bb96-f7de17f97b3b"))
+		(pin "15" (uuid "8c0d3a28-c2d7-4cc6-9164-5f9b47b20ae3"))
+		(pin "16" (uuid "b847646f-4a7b-42a2-a73e-0b78bde418d0"))
+		(pin "17" (uuid "f19d03f0-8e79-4b87-a772-10f4c9f1ce79"))
+		(pin "18" (uuid "dc276a73-5d38-4864-b151-64afafdf5f33"))
+		(pin "19" (uuid "453209e2-d69f-4838-941e-e1bb6c93f1bb"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U4") (unit 1))))
+	)
+	(label "+3V3" (at 363.22 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "0ed61c87-1eaf-4b9e-82ef-f0426a99ffd0"))
+	(label "EN" (at 347.98 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "287ab69f-8d93-4ec2-970c-780d0ee8c2b4"))
+	(label "SLAVE_IN" (at 347.98 68.58 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "927f8420-16ab-4083-881f-b38fcd20849d"))
+	(label "SLAVE_OUT" (at 347.98 71.12 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "2ceb9711-65f7-4a75-93e2-da17a8a7e44c"))
+	(label "MASTER_IN" (at 347.98 73.66 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d928ce2a-8a49-4135-94f6-91052ec4db2c"))
+	(label "MASTER_OUT" (at 347.98 76.20 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "5d1858c3-4fe0-4d74-b602-549e91ec7d24"))
+	(label "IO8" (at 347.98 78.74 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "70a3009c-f48e-4bf0-b5e4-3fcbc4b5edc4"))
+	(label "BOOT" (at 347.98 81.28 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "c2c55e2d-5eed-46b3-a3f1-fe940d4e4558"))
+	(label "GND" (at 363.22 93.98 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fcd2c1d1-99e3-48de-a91b-5bdc6e9426ae"))
+	(label "LED_USER" (at 347.98 83.82 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "86f65614-7261-4f6b-a92a-fe480c498558"))
+	(label "RXD" (at 378.46 53.34 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "98fd289b-1fc2-4b80-97c5-a02d8146c10e"))
+	(label "TXD" (at 378.46 55.88 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e34b4a38-f487-47a1-a1de-3ffa11acbf65"))
+	(label "USB_DM" (at 347.98 86.36 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "4ca8cd56-e3bc-4e81-a8d0-85da689fc5ff"))
+	(label "USB_DP" (at 347.98 88.90 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "47b7466f-1824-494a-96bd-d43e46741323"))
+	(label "NTC_ADC" (at 347.98 66.04 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "a075473c-a6ee-494c-9e99-d4f0b5f32081"))
+	(label "IO2" (at 347.98 63.50 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "8252b794-3b16-4aac-8852-4a62309728bd"))
+	(no_connect (at 347.98 60.96) (uuid "dcf0d96c-2221-4252-9296-77fddea83feb"))
+	(no_connect (at 347.98 58.42) (uuid "4e7c3c95-5462-41a3-a1cb-5c0d89559a48"))
+	(label "GND" (at 363.22 93.98 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "14715558-07a5-4f0e-811e-e850b0f62481"))
+	(symbol (lib_id "Regulator_Linear:AP2112K-3.3") (at 416.56 50.80 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "db8c0ae9-8824-48e6-be14-0f11d263a0f2")
+		(property "Reference" "U5" (at 419.56 46.80 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "AP2112K-3.3" (at 419.56 54.80 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (at 416.56 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 416.56 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C51118" (at 416.56 50.80 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2a1ea4bd-d0e2-4061-be3b-581496ada694"))
+		(pin "2" (uuid "9ac7a267-17ce-4168-b03f-0ebe39c3df3a"))
+		(pin "3" (uuid "119b0cae-abd2-4044-be18-281ac11e48f6"))
+		(pin "4" (uuid "262417fc-843b-48c5-a6c9-c62be74b7ef4"))
+		(pin "5" (uuid "e3725ea9-6e73-40e2-9084-1334de951f6e"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U5") (unit 1))))
+	)
+	(label "+5V" (at 408.94 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "2be61e29-cdd2-4032-af40-fc65ea34ef9a"))
+	(label "GND" (at 416.56 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "4c9d33bf-2822-4296-a34a-7d388320b35e"))
+	(label "+5V" (at 408.94 50.80 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "81291c4e-256d-4423-8ef1-3c9f9cb88dd1"))
+	(no_connect (at 421.64 50.80) (uuid "acee4859-a2a4-48a3-9d8c-5736406320be"))
+	(label "+3V3" (at 424.18 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "126493f0-1771-468d-90f4-7084aaa97369"))
+	(symbol (lib_id "Power_Protection:USBLC6-2SC6") (at 459.74 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "bdab23f2-12a4-4601-90ee-7e9ee91b715f")
+		(property "Reference" "U6" (at 462.74 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "USBLC6-2SC6" (at 462.74 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6" (at 459.74 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 459.74 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7519" (at 459.74 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "f53d92c3-4067-419d-89d4-0cfccf706a23"))
+		(pin "2" (uuid "1e4ae426-86e2-472c-acb3-e04b7716571a"))
+		(pin "3" (uuid "d11db830-f163-441c-8dad-da4901fc5a89"))
+		(pin "4" (uuid "16af53fa-0d54-4f07-8a7c-2e75bacd4a83"))
+		(pin "5" (uuid "9f885e4b-80d1-44b7-bb4e-ee092edf6183"))
+		(pin "6" (uuid "6f2c106f-e6c0-44d4-9b55-8a325665505a"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "U6") (unit 1))))
+	)
+	(label "USB_DM" (at 454.66 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "5fd1e881-aa0e-4137-b7bd-f164530280bf"))
+	(label "GND" (at 459.74 60.96 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "28b8ad47-4ca3-48b3-9918-46a69f2f5ff8"))
+	(label "USB_DP" (at 454.66 55.88 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "71fe529e-13c7-410f-89c5-3510e3cf5e80"))
+	(label "USB_DP" (at 464.82 55.88 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "baad0c7e-3050-47f9-9d91-aff087c6197e"))
+	(label "VBUS" (at 459.74 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "8f343306-f4df-42e2-9452-d2980b2a6ea5"))
+	(label "USB_DM" (at 464.82 53.34 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e817cc9a-e6b6-4a14-a4c5-6e97ebab305b"))
+	(symbol (lib_id "Transistor_BJT:MMBT3906") (at 500.38 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "2c3f38fc-a057-4a4c-8e56-41eaa4ed3a8b")
+		(property "Reference" "Q1" (at 503.38 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2907A" (at 503.38 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 500.38 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 500.38 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420352" (at 500.38 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "fdcae71f-b3be-4f2c-b237-8b99cb1fb49c"))
+		(pin "2" (uuid "161b27f9-6536-4d5a-881a-52ebf4b31ec4"))
+		(pin "3" (uuid "d2d9b4b0-208e-4df3-b1e9-c38efef1e941"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q1") (unit 1))))
+	)
+	(label "N_D7K" (at 495.30 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "3c7ba435-9b4c-4bac-a50a-c13e34913c12"))
+	(label "N_D2K" (at 502.92 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "78f06e32-42a2-4fb9-b2bc-160fd3edf8c5"))
+	(label "N_D6K" (at 502.92 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "f2d47349-34c4-4e57-90b1-a2363c692fde"))
+	(symbol (lib_id "Transistor_BJT:MMBT3906") (at 538.48 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "812d9e88-1757-4b68-9112-dd6b4e722377")
+		(property "Reference" "Q2" (at 541.48 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2907A" (at 541.48 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 538.48 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 538.48 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420352" (at 538.48 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "74676782-6776-4da6-bb8f-110a2e05ba2a"))
+		(pin "2" (uuid "9d51fb4a-2ef7-4458-a1ff-145b721cca87"))
+		(pin "3" (uuid "606d5543-04af-4dcd-ae35-f02766b62868"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q2") (unit 1))))
+	)
+	(label "Q2B" (at 533.40 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "b726f046-b9ac-4838-a848-8b1cfb3f0653"))
+	(label "+24V" (at 541.02 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "b5b03421-8f2a-413b-a043-4965cc882777"))
+	(label "Q2C" (at 541.02 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "f74861e7-f76e-4d19-bea4-b15c0dd5bc36"))
+	(symbol (lib_id "Transistor_BJT:MMBT3906") (at 574.04 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "435476c1-a902-4548-a914-cceb61e95882")
+		(property "Reference" "Q3" (at 577.04 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2907A" (at 577.04 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 574.04 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 574.04 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420352" (at 574.04 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "008ed762-1e80-4ab8-bc51-4668835da085"))
+		(pin "2" (uuid "634570c8-552f-4c19-8109-ea851c8e0cf6"))
+		(pin "3" (uuid "843b4585-41ae-4204-8691-1c9d4d16b776"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q3") (unit 1))))
+	)
+	(label "Q2C" (at 568.96 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d761e831-9a08-4745-b858-f8708215ceb3"))
+	(label "Q2B" (at 576.58 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "03c009f8-ecae-438b-b78f-a1cd21a4c38a"))
+	(label "TPLUS" (at 576.58 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "4ba04059-63ee-4daa-b0ae-3dce1e2b7112"))
+	(symbol (lib_id "Transistor_BJT:MMBT3906") (at 612.14 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "64afd108-b9ae-4f18-b91b-169a7e182de2")
+		(property "Reference" "Q4" (at 615.14 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2907A" (at 615.14 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 612.14 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 612.14 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420352" (at 612.14 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "657105de-e39c-4727-b3cc-fdd2289e2684"))
+		(pin "2" (uuid "5ca9dcda-641e-484a-bfbd-02781bd4c5e4"))
+		(pin "3" (uuid "038f5231-f13d-441a-8f02-f5985b86c5e3"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q4") (unit 1))))
+	)
+	(label "Q4B" (at 607.06 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "72963197-5ccc-4c2a-8e65-02d6a103ff1d"))
+	(label "+24V" (at 614.68 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "c7278c99-b46c-45c7-a156-17d6b549a756"))
+	(label "Q4C" (at 614.68 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "295c4519-5165-44fb-a1e2-6e7a116bf704"))
+	(symbol (lib_id "Transistor_BJT:MMBT2222A") (at 650.24 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "3f75acd7-e25e-438d-9e8a-355abd89a683")
+		(property "Reference" "Q5" (at 653.24 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2222A" (at 653.24 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 650.24 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 650.24 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8512" (at 650.24 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "de453e2e-ecf9-4833-941d-6e2ccff65e71"))
+		(pin "2" (uuid "85705d3f-5e9b-44a2-a344-a9fe69e93e40"))
+		(pin "3" (uuid "7aa7ff9d-1c99-49e2-972a-6e15b6a2152e"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q5") (unit 1))))
+	)
+	(label "+3V3" (at 645.16 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "894e1bee-ab7e-4d1e-a0d8-24c1c616fbe3"))
+	(label "Q5E" (at 652.78 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "c038f594-2c9e-4885-8c4b-046ece289a00"))
+	(label "Q4B" (at 652.78 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "5b3ac7f2-be8b-488e-aed4-f623cee18def"))
+	(symbol (lib_id "Transistor_BJT:MMBT2222A") (at 688.34 53.34 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "5defe369-46c5-4a00-974d-8ce831b24475")
+		(property "Reference" "Q6" (at 691.34 49.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "MMBT2222A" (at 691.34 57.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23" (at 688.34 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 688.34 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8512" (at 688.34 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "cd5b7a6e-5732-4049-b523-8bbdfb36bab7"))
+		(pin "2" (uuid "93ec92d7-6749-4a01-abbb-f0554f79cc63"))
+		(pin "3" (uuid "d21df776-d238-480b-932f-eaecf22e00aa"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "Q6") (unit 1))))
+	)
+	(label "Q6B" (at 683.26 53.34 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "c3d1a7d7-09cb-490d-8b24-07e079ea42e1"))
+	(label "MASTER_IN" (at 690.88 58.42 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "75d8ae73-a0a4-4523-bf2c-c572a240f28e"))
+	(label "+3V3" (at 690.88 48.26 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "a30c366b-3354-40ab-8e68-7e0985752e72"))
+	(symbol (lib_id "Device:D_Schottky") (at 723.90 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "8e9cdd55-3792-453e-a94e-44d555a5f229")
+		(property "Reference" "D1" (at 726.90 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N5819W" (at 726.90 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 723.90 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 723.90 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 723.90 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "8b71619b-5ee3-467a-ac8d-1b94c2f4d312"))
+		(pin "2" (uuid "187f1149-2feb-470b-aca5-bb60605a67bb"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D1") (unit 1))))
+	)
+	(label "+24V" (at 720.09 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fe0a40ce-9ae4-4b1c-8cc9-3a56de49a6b5"))
+	(label "SW" (at 727.71 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "a38e58ae-7b83-42c3-a6ae-43efcb5307db"))
+	(symbol (lib_id "Device:D") (at 762.00 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "b78ccba3-7c37-4561-9045-fb43b8558520")
+		(property "Reference" "D2" (at 765.00 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N4148W" (at 765.00 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 762.00 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 762.00 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420318" (at 762.00 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "36d6a933-818a-4387-9757-b956cbaa5b7b"))
+		(pin "2" (uuid "767c4163-b4d1-441c-b105-ba438eba0603"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D2") (unit 1))))
+	)
+	(label "N_D2K" (at 758.19 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "fdb3a8e0-f094-45c3-a884-fe096feaf1b1"))
+	(label "B1" (at 765.81 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "6924bc6e-fae2-48d6-9ffd-c6da580c5b5c"))
+	(symbol (lib_id "Device:D") (at 800.10 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "679bb40c-238a-48c1-bac4-1914699db4bb")
+		(property "Reference" "D3" (at 803.10 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N4148W" (at 803.10 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 800.10 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 800.10 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420318" (at 800.10 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ed2a192b-e575-49e7-99f5-d0464fa21deb"))
+		(pin "2" (uuid "7d5f9ad9-07cc-4aa9-b0c5-18c98d4a4ead"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D3") (unit 1))))
+	)
+	(label "N_D2K" (at 796.29 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "f38a7c53-8401-49d1-83aa-cb77639ad526"))
+	(label "B2" (at 803.91 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "1c0c3bc1-7e0f-4725-a644-c3058ebbba67"))
+	(symbol (lib_id "Device:D") (at 838.20 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "27854763-b8c3-4e45-afa9-29c4383c4e4d")
+		(property "Reference" "D4" (at 841.20 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N4148W" (at 841.20 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 838.20 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 838.20 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420318" (at 838.20 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b1f50980-44b1-4b29-b21a-59b8574ec6a3"))
+		(pin "2" (uuid "57ce65cd-49cd-42d0-82f8-3d570ed91b9c"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D4") (unit 1))))
+	)
+	(label "B2" (at 834.39 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "b6da6474-bc50-4658-9950-a3b91156e62c"))
+	(label "OTRTN" (at 842.01 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e5ca9b01-fa98-459b-a5b9-02a28eb14e17"))
+	(symbol (lib_id "Device:D") (at 873.76 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "35560045-35a0-403b-b43a-7903a55ec797")
+		(property "Reference" "D5" (at 876.76 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N4148W" (at 876.76 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 873.76 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 873.76 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C7420318" (at 873.76 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a6ff5071-0a1d-423f-8bbd-10ca9c7c3bf2"))
+		(pin "2" (uuid "1bbd2c84-2805-4b48-994f-e3621ace48c0"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D5") (unit 1))))
+	)
+	(label "B1" (at 869.95 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "c45acd38-c487-4e04-beeb-9b04bcec653f"))
+	(label "OTRTN" (at 877.57 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "0cb89d21-5ca5-4dbf-92f6-e0fe002def64"))
+	(symbol (lib_id "Device:D_Zener") (at 911.86 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "dc97a34f-cb05-4fb3-9645-e0d324788dac")
+		(property "Reference" "D6" (at 914.86 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "4V7" (at 914.86 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 911.86 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 911.86 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C19077400" (at 911.86 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5d4a58cd-fb5a-435d-981c-3c0e67677197"))
+		(pin "2" (uuid "80b03a12-5e4e-4497-8cb1-b6e64a2b7a1f"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D6") (unit 1))))
+	)
+	(label "N_D6K" (at 908.05 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "69eabc9b-a36c-4089-8a98-455246f471be"))
+	(label "OTRTN" (at 915.67 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "1165fef3-1b4b-450e-9b9b-e837de602c31"))
+	(symbol (lib_id "Device:D_Zener") (at 949.96 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "e8a13f8a-f0e6-46ed-9423-156afaeae337")
+		(property "Reference" "D7" (at 952.96 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "13V" (at 952.96 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 949.96 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 949.96 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C22399883" (at 949.96 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c52eb676-5d2d-4184-8d28-04d18c643bde"))
+		(pin "2" (uuid "706b78f9-3ffa-4fe6-b461-d375d122b0e7"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D7") (unit 1))))
+	)
+	(label "N_D7K" (at 946.15 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "8ce017e4-d4a1-47aa-9cfd-72e219efa460"))
+	(label "OTRTN" (at 953.77 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "05c7f11b-bf4f-4249-8a23-093a14b7f126"))
+	(symbol (lib_id "Device:D_Zener") (at 988.06 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c935ef48-58aa-4888-b4b6-41ff79ec71ef")
+		(property "Reference" "D8" (at 991.06 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "4V3" (at 991.06 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 988.06 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 988.06 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C19077399" (at 988.06 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "be29d293-052d-479e-bdef-875db8b50ac8"))
+		(pin "2" (uuid "b4135ba5-0a28-4252-92ea-0be6963e9856"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D8") (unit 1))))
+	)
+	(label "N_D8K" (at 984.25 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "1136b184-a3c4-4d3e-a3c7-71567fe48762"))
+	(label "OTRTN" (at 991.87 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "4cfa5d88-4051-42f0-80d6-eb55d7932f0d"))
+	(symbol (lib_id "Device:D_Zener") (at 1026.16 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "3dcc5208-34cf-44b2-bf9f-0cef8521f0ae")
+		(property "Reference" "D9" (at 1029.16 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "8V2" (at 1029.16 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 1026.16 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1026.16 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C22399882" (at 1026.16 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c62880a2-d59c-4ffa-9813-0d94654a5f8a"))
+		(pin "2" (uuid "f73b3cd7-9785-4c18-ad47-2fc4b5758172"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D9") (unit 1))))
+	)
+	(label "TPLUS" (at 1022.35 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "885a76d7-09dc-4a61-bb30-4fcb5c36c1a1"))
+	(label "N_D9A" (at 1029.97 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "c50c078a-5651-47cd-a4f5-1fabae7b1ade"))
+	(symbol (lib_id "Device:LED") (at 1061.72 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "49fb4b48-39ce-40a3-9b8d-dcaba35431e3")
+		(property "Reference" "D10" (at 1064.72 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "PWR" (at 1064.72 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric" (at 1061.72 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1061.72 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C84256" (at 1061.72 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "48b6fa5a-3b6f-4e37-bdb9-b4431854aa83"))
+		(pin "2" (uuid "e0db5842-35b8-43cd-93a4-db43a9588736"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D10") (unit 1))))
+	)
+	(label "GND" (at 1057.91 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "2492b073-5fd3-4667-927e-8354b008f161"))
+	(label "N_LED_PWR" (at 1065.53 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "3ec1185d-091c-4dad-96a8-3d0ca3ccf655"))
+	(symbol (lib_id "Device:LED") (at 1099.82 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "46645a38-d25b-440c-b18a-a4c248c77b22")
+		(property "Reference" "D11" (at 1102.82 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "RxB" (at 1102.82 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric" (at 1099.82 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1099.82 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C2297" (at 1099.82 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "8f28c9da-f593-4707-9d5f-2c77c0740cba"))
+		(pin "2" (uuid "411bedc3-21bd-41eb-87ce-05268cc73c2c"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D11") (unit 1))))
+	)
+	(label "GND" (at 1096.01 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "70282528-b0c1-4af1-93db-47338e8909f0"))
+	(label "N_LED_RXB" (at 1103.63 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "2183bf79-479c-4138-98d1-0168e651fdbb"))
+	(symbol (lib_id "Device:LED") (at 1137.92 48.26 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "bf7ca181-8073-457c-b8b2-7fe074108e08")
+		(property "Reference" "D12" (at 1140.92 44.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "RxT" (at 1140.92 52.26 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric" (at 1137.92 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1137.92 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C2296" (at 1137.92 48.26 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "657b6544-9e34-4890-8cac-65ca84bb2326"))
+		(pin "2" (uuid "aeb79130-5385-479c-bac6-4f695642479f"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D12") (unit 1))))
+	)
+	(label "GND" (at 1134.11 48.26 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "6c4df6de-4d9c-4508-bc5d-d7037a106e73"))
+	(label "N_LED_RXT" (at 1141.73 48.26 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "c62d3f22-4a12-4cd7-924a-fc93121d5c15"))
+	(symbol (lib_id "Device:D_Schottky") (at 43.18 116.84 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "aaad23eb-07da-41e2-aa99-09b0cbf9b242")
+		(property "Reference" "D13" (at 46.18 112.84 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N5819W" (at 46.18 120.84 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 43.18 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 43.18 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 43.18 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "6bb82a9e-f41c-4089-b319-bc2a610680b8"))
+		(pin "2" (uuid "cfd9b593-6ce2-4cd5-b0ec-dfd517582c0d"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D13") (unit 1))))
+	)
+	(label "+5V" (at 39.37 116.84 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "e9dc1389-9a29-474f-aecd-a221ff1af2a5"))
+	(label "VBUS" (at 46.99 116.84 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "4287bf73-0de0-4b6e-bd9e-b7c7047868c8"))
+	(symbol (lib_id "Device:D_Schottky") (at 81.28 116.84 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "b9162e61-0aa2-4baf-8019-59e96e596197")
+		(property "Reference" "D14" (at 84.28 112.84 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1N5819W" (at 84.28 120.84 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 81.28 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 81.28 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 81.28 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "68916c91-aa5c-4128-b569-0ca7abdf7d2d"))
+		(pin "2" (uuid "1242256c-a070-4480-86f3-5f901d8d8459"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D14") (unit 1))))
+	)
+	(label "+5V" (at 77.47 116.84 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d6e87713-2a2a-4ccb-ae71-047997051b12"))
+	(label "5V_IN" (at 85.09 116.84 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "bb5ee527-74d0-4c96-87e2-c909b26216cb"))
+	(symbol (lib_id "Device:LED") (at 119.38 116.84 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "023ed9e0-e81d-479f-af2b-7d514462722d")
+		(property "Reference" "D15" (at 122.38 112.84 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "USER" (at 122.38 120.84 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric" (at 119.38 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 119.38 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "0abd98a9-f25d-4969-8739-26404fc57ce5"))
+		(pin "2" (uuid "a85e44f9-e40a-4615-991b-b1e34e3dabba"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D15") (unit 1))))
+	)
+	(label "GND" (at 115.57 116.84 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "64af2635-8b7c-4947-90a6-0e6ef33f4c7e"))
+	(label "N_LED_USER" (at 123.19 116.84 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e83d22ed-3204-4426-a190-97a825072512"))
+	(symbol (lib_id "Device:D_TVS") (at 157.48 116.84 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1ae9a6f4-3339-4f9a-900a-885486b8fbe2")
+		(property "Reference" "D16" (at 160.48 112.84 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "SMAJ28CA" (at 160.48 120.84 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 157.48 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 157.48 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "e1f12a20-6411-464a-8f72-0f3966025c53"))
+		(pin "2" (uuid "a24a5296-7a37-4d41-a4b2-0e0f4d74ca26"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D16") (unit 1))))
+	)
+	(label "B1" (at 153.67 116.84 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "30a8c75f-5622-4775-8bc7-7d3ba239f48b"))
+	(label "B2" (at 161.29 116.84 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "b115c265-f749-45bc-bd2a-7ad6c2c50d94"))
+	(symbol (lib_id "Device:D_TVS") (at 195.58 116.84 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "084360e8-d124-4a21-a962-5c77104ef726")
+		(property "Reference" "D17" (at 198.58 112.84 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "SMAJ28CA" (at 198.58 120.84 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 195.58 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 195.58 116.84 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "e69d934f-6876-420a-ab02-1e81213322d6"))
+		(pin "2" (uuid "52bbbf15-6a68-4a19-8192-87a6a3d9c33f"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "D17") (unit 1))))
+	)
+	(label "TPLUS" (at 191.77 116.84 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "15db28e3-48af-4c80-ac10-4289633e7f09"))
+	(label "GND" (at 199.39 116.84 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "7109924f-8f05-48cd-82ee-72b8e5bdb278"))
+	(symbol (lib_id "Device:L") (at 228.60 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "600aff27-5208-4b36-870a-756a0a3abbb0")
+		(property "Reference" "L1" (at 231.60 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10uH" (at 231.60 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Inductor_SMD:L_Bourns-SRN4018" (at 228.60 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 228.60 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C177242" (at 228.60 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a0cbf353-18d8-4df0-820f-9e0a3bae4212"))
+		(pin "2" (uuid "5cdf5369-400d-4d01-8d47-1ae0bf6b3bee"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "L1") (unit 1))))
+	)
+	(label "+5V" (at 228.60 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "88136041-743f-4157-b54b-9932c1755b17"))
+	(label "SW" (at 228.60 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "cdd3aca8-92ca-4ac4-b09a-8cf0bdedca04"))
+	(symbol (lib_id "Device:C") (at 259.08 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "71130859-025b-49fe-82db-e4adb24cb951")
+		(property "Reference" "C1" (at 262.08 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10u/16V" (at 262.08 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 259.08 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 259.08 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d7c1cb74-b988-43a7-b9de-b16e5aa92886"))
+		(pin "2" (uuid "41d344f4-1d5d-4cf1-91c5-2cb4127f7ae7"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C1") (unit 1))))
+	)
+	(label "+5V" (at 259.08 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "1d37ee0b-f208-4de7-97e8-728d4438e111"))
+	(label "GND" (at 259.08 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "6d00c77c-5fb0-4f12-8566-82567299a7ec"))
+	(symbol (lib_id "Device:C") (at 289.56 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "8a0a39ce-0677-4f23-9341-b4837fa7d25c")
+		(property "Reference" "C2" (at 292.56 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "22p" (at 292.56 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 289.56 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 289.56 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b162bdf3-36c7-4352-b6fc-a9eb3ea99455"))
+		(pin "2" (uuid "d0a2e86f-4a26-42be-9094-1d6749cacd36"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C2") (unit 1))))
+	)
+	(label "+24V" (at 289.56 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "52bfe7b3-f70f-4f26-ae8e-b0074ac4110d"))
+	(label "FB" (at 289.56 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "40181fe5-c40f-40d9-8a10-b49e938b94f4"))
+	(symbol (lib_id "Device:C") (at 317.50 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "424a9d7c-e1ac-4b22-90ee-05fb843854bf")
+		(property "Reference" "C3" (at 320.50 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "100n/50V" (at 320.50 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 317.50 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 317.50 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "93153840-bbfc-485b-864f-aaed5f675a54"))
+		(pin "2" (uuid "d22c1aac-d94c-400f-a12c-0552e4c4407d"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C3") (unit 1))))
+	)
+	(label "+24V" (at 317.50 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "2fa8960f-e118-433c-81e5-26abf8660bc7"))
+	(label "GND" (at 317.50 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "e4894ce9-7cab-4eeb-9620-bcea53b59da1"))
+	(symbol (lib_id "Device:C") (at 347.98 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "b98a411b-50ef-4500-ac27-cc47f0b2af51")
+		(property "Reference" "C4" (at 350.98 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10u/50V" (at 350.98 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 347.98 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 347.98 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C440198" (at 347.98 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "08f07f12-a2ac-43fe-981e-764ad3bc9fa8"))
+		(pin "2" (uuid "b35712c5-043e-4411-bfa4-2135ffd60dd6"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C4") (unit 1))))
+	)
+	(label "+24V" (at 347.98 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "309ce4d8-0d74-41e9-9c81-bc7f5f13bd8e"))
+	(label "GND" (at 347.98 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "74487833-5c96-467f-acb3-0c51a4030ee8"))
+	(symbol (lib_id "Device:C") (at 378.46 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "6b2cdcb2-37ed-4a0f-9c1f-ba6eeff719a4")
+		(property "Reference" "C5" (at 381.46 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10u/16V" (at 381.46 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 378.46 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 378.46 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b1665bcf-8b0b-423a-a5e9-8d89dfcdecd7"))
+		(pin "2" (uuid "05e30554-1aea-45e2-ba3c-b06b1bd44e82"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C5") (unit 1))))
+	)
+	(label "+3V3" (at 378.46 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "35d8a6a7-910b-4f69-9902-35a8934149bb"))
+	(label "GND" (at 378.46 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "72c0b7e0-f36a-4054-8051-eadea8844823"))
+	(symbol (lib_id "Device:C") (at 408.94 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "b90d7b4d-222b-4895-9287-4e8356437fb8")
+		(property "Reference" "C6" (at 411.94 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "100n" (at 411.94 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 408.94 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 408.94 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d5db90eb-d10b-464f-85fe-b390d808989b"))
+		(pin "2" (uuid "40025d31-3888-427f-a949-7f134523bf68"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C6") (unit 1))))
+	)
+	(label "+3V3" (at 408.94 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "fefbed39-b001-458a-a587-fda36817eda7"))
+	(label "GND" (at 408.94 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "13b00c37-8faa-45ed-b83b-c231267e4e83"))
+	(symbol (lib_id "Device:C") (at 439.42 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "91300a6a-6bb8-4118-933e-3ce495c2d754")
+		(property "Reference" "C7" (at 442.42 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "100n" (at 442.42 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 439.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 439.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d51f7c92-7f9c-46ce-af51-f0655404fc4b"))
+		(pin "2" (uuid "b0563a47-2a6e-449d-9b50-3c3f26c8621b"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C7") (unit 1))))
+	)
+	(label "NTC_ADC" (at 439.42 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "e5442977-bb25-4507-8bc9-09a386e30246"))
+	(label "GND" (at 439.42 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d4f2d8a8-ca7f-4b60-8960-fc753e495112"))
+	(symbol (lib_id "Device:C") (at 467.36 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "14b17c9f-f1f5-479f-a7c5-63c48cea5dbc")
+		(property "Reference" "C8" (at 470.36 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1u" (at 470.36 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 467.36 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 467.36 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "1fab2c13-0239-4b72-8c30-346b4b422aed"))
+		(pin "2" (uuid "e07396a6-a82f-43a6-9968-1377b54959ad"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C8") (unit 1))))
+	)
+	(label "EN" (at 467.36 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "bd4a3c76-111d-452b-8aea-bb4a97c1b04d"))
+	(label "GND" (at 467.36 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "240b643b-e90f-4a74-9f52-e47fdb5e05c0"))
+	(symbol (lib_id "Device:C") (at 497.84 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "08ec20c6-b221-42a0-840c-90cc12782906")
+		(property "Reference" "C9" (at 500.84 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1u" (at 500.84 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 497.84 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 497.84 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "372b9f71-7e68-4b1e-9d3c-2319a0592245"))
+		(pin "2" (uuid "f7a56d8a-36e9-411c-a1a5-83be0a0fe91b"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "C9") (unit 1))))
+	)
+	(label "+5V" (at 497.84 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "016fe972-8493-4783-bf57-ea52d7ee9aeb"))
+	(label "GND" (at 497.84 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "789b6e07-2b78-4cb7-8eaf-1eb349705d8d"))
+	(symbol (lib_id "Device:R") (at 528.32 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1f04c56d-04d5-471b-8a75-0d1d2288b523")
+		(property "Reference" "R1" (at 531.32 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "240k" (at 531.32 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 528.32 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 528.32 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "675c0043-e92b-4007-8ee3-f815c24ee3ac"))
+		(pin "2" (uuid "48588ca0-26c5-4075-b216-19de5eee91fb"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R1") (unit 1))))
+	)
+	(label "+24V" (at 528.32 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "b1290e7e-5ff0-4acb-8f84-1db71bd29aca"))
+	(label "FB" (at 528.32 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "1587d891-4b27-4761-8500-a90ce82a30e8"))
+	(symbol (lib_id "Device:R") (at 558.80 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "5f88b305-346c-4bc7-9a1f-afaf9faddeb2")
+		(property "Reference" "R2" (at 561.80 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "13k" (at 561.80 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 558.80 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 558.80 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "1e0664ba-408d-48ed-8fe2-58d759e005c6"))
+		(pin "2" (uuid "39866841-8529-44e8-a156-25a168cc2ff4"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R2") (unit 1))))
+	)
+	(label "FB" (at 558.80 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "83b1a7ac-01a7-4c63-bd29-52c809ad46bf"))
+	(label "GND" (at 558.80 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "514e2222-28b3-4b61-800b-af4c63f0b022"))
+	(symbol (lib_id "Device:R") (at 589.28 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "717a5fd4-fdbb-41c8-9694-7ec5cf5848f5")
+		(property "Reference" "R3" (at 592.28 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "330" (at 592.28 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 589.28 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 589.28 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "bfc80810-7ac3-46eb-a897-66e55681aad6"))
+		(pin "2" (uuid "bd024739-79b4-48b6-abe0-ae9b016d0aae"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R3") (unit 1))))
+	)
+	(label "N_D7K" (at 589.28 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "faaf566c-03a1-4f0d-95f0-a72d17c483e5"))
+	(label "N_D2K" (at 589.28 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "f60f326c-1989-416d-b618-339795dd7bc2"))
+	(symbol (lib_id "Device:R") (at 619.76 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "4e683224-e721-415e-ab39-d7045c82408c")
+		(property "Reference" "R4" (at 622.76 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "220" (at 622.76 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 619.76 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 619.76 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a7f209d2-af8a-40e0-aecc-a508d540e46b"))
+		(pin "2" (uuid "3a98cf99-2ec3-45b1-8f28-2f94ff3790ab"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R4") (unit 1))))
+	)
+	(label "N_D6K" (at 619.76 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "62a30798-0750-49b5-8aba-f13db7f60eab"))
+	(label "N_R4R5" (at 619.76 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "338231c0-5e09-4b58-a6cb-575940c08422"))
+	(symbol (lib_id "Device:R") (at 647.70 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "fa10cede-49d8-42ce-b7eb-575023806258")
+		(property "Reference" "R5" (at 650.70 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "100" (at 650.70 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 647.70 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 647.70 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "993faaa4-de1b-48db-8897-04374bd54714"))
+		(pin "2" (uuid "c1bc5fc2-6bdb-4b2d-8b99-eb304d1bd086"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R5") (unit 1))))
+	)
+	(label "N_R4R5" (at 647.70 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "96457c40-9e71-4470-8033-965055ef3b95"))
+	(label "OTRTN" (at 647.70 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "683e65db-04c1-4b7d-8c92-465bed75aa60"))
+	(symbol (lib_id "Device:R") (at 678.18 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "9035752b-e5c8-4070-8b56-524dd96c10f6")
+		(property "Reference" "R6" (at 681.18 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "560" (at 681.18 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 678.18 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 678.18 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "29c6c638-c39c-4f6c-bd7b-3becb75367ed"))
+		(pin "2" (uuid "419e8ab6-94ed-44b1-b06f-164a99bfda96"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R6") (unit 1))))
+	)
+	(label "+3V3" (at 678.18 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "d37dee00-f63c-4844-994a-b8c98a3664d3"))
+	(label "N_R6U2" (at 678.18 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "52820d98-646e-4c7d-bd1c-f996f346d61e"))
+	(symbol (lib_id "Device:R") (at 708.66 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "775e44c1-783d-4f36-a206-72557b460cbe")
+		(property "Reference" "R7" (at 711.66 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 711.66 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 708.66 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 708.66 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5fafad6f-820d-4dac-9074-8555d75db487"))
+		(pin "2" (uuid "9d87f850-e175-49c6-963d-493f4ae2a6c4"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R7") (unit 1))))
+	)
+	(label "SLAVE_IN" (at 708.66 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "6d8e1edb-a62a-4d29-b388-e8ea0e8c5b2a"))
+	(label "GND" (at 708.66 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "650f564c-eb0e-493e-913a-32d822fed8f3"))
+	(symbol (lib_id "Device:R") (at 739.14 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "77775f29-a9a5-4a9e-ac83-0cc9ac095cfe")
+		(property "Reference" "R8" (at 742.14 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "100" (at 742.14 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 739.14 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 739.14 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "c667357c-8592-4944-a6ab-ed96fe821990"))
+		(pin "2" (uuid "669d395f-0c58-4bef-99f7-775e612283df"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R8") (unit 1))))
+	)
+	(label "+24V" (at 739.14 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "580a0ef4-9a83-4363-9793-b9eaec78fa8f"))
+	(label "Q2B" (at 739.14 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "5dafd19e-ea73-4fc6-8078-8eb82f0795aa"))
+	(symbol (lib_id "Device:R") (at 769.62 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "299f1cd9-8084-4c0f-845c-4e0d6a4f96c4")
+		(property "Reference" "R9" (at 772.62 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "33k" (at 772.62 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 769.62 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 769.62 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "3cbc4f3e-69fb-4a96-bea0-c2d094105c31"))
+		(pin "2" (uuid "1ae1e2ca-92ba-4d76-bccd-95c41ee67152"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R9") (unit 1))))
+	)
+	(label "Q2C" (at 769.62 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "dbf28a03-b438-4be5-bc8c-bab3c5e38a5a"))
+	(label "GND" (at 769.62 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "9a602ba4-4298-4102-8c12-b7fa2a7f6c0e"))
+	(symbol (lib_id "Device:R") (at 797.56 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "ba70ccbf-298c-4ec4-9b9f-92899b710a7f")
+		(property "Reference" "R10" (at 800.56 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "20" (at 800.56 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 797.56 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 797.56 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a4f73a8e-b783-42ac-9fb5-6b24183cc92f"))
+		(pin "2" (uuid "c0333bd0-1bae-436a-8ea1-36a412b730b7"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R10") (unit 1))))
+	)
+	(label "R10R11" (at 797.56 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "1e90a625-9886-4c7a-b0f6-37f627102fdd"))
+	(label "Q2B" (at 797.56 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "2e62bb0e-1f17-4f27-bafa-5e611c441eb0"))
+	(symbol (lib_id "Device:R") (at 828.04 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "23374293-6b99-4d8e-abf0-f6ce44264bd3")
+		(property "Reference" "R11" (at 831.04 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "20" (at 831.04 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 828.04 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 828.04 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "9eb96ec7-5212-487c-953a-970b08741c2e"))
+		(pin "2" (uuid "c4dd8d1a-e016-4d59-aa76-6d2609a3ed0a"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R11") (unit 1))))
+	)
+	(label "Q4C" (at 828.04 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "500b54e6-f975-4310-aa57-40dc50d19840"))
+	(label "R10R11" (at 828.04 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "021cc0ce-8da7-4129-a6be-bd3545f9bb19"))
+	(symbol (lib_id "Device:R") (at 858.52 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "ad4e0dcb-20c2-4b0c-b883-30f1e722478e")
+		(property "Reference" "R12" (at 861.52 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 861.52 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 858.52 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 858.52 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2a3ca7b4-4bd9-40e5-8e8e-261017f88e62"))
+		(pin "2" (uuid "f1e1c660-acc6-4906-9736-baed1a8fd57d"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R12") (unit 1))))
+	)
+	(label "Q6B" (at 858.52 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "d8c6aff6-b92c-4cb0-bfd0-fb93b23b155f"))
+	(label "N_D9A" (at 858.52 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d654058c-89e5-475d-b377-6cb7d06dd5a5"))
+	(symbol (lib_id "Device:R") (at 889.00 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c4024d89-1c4e-41f5-bce1-fb922af00496")
+		(property "Reference" "R13" (at 892.00 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "150k" (at 892.00 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 889.00 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 889.00 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "cdb2247a-2f96-480c-8822-b55c66541b34"))
+		(pin "2" (uuid "0309d490-791e-4fc9-9021-567c4bde35f5"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R13") (unit 1))))
+	)
+	(label "Q6B" (at 889.00 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "79bdb3d0-212c-4a72-9a59-3a7f01a4a9d9"))
+	(label "GND" (at 889.00 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "39d6c598-7477-44d5-a26d-c93cab5a77b2"))
+	(symbol (lib_id "Device:R") (at 919.48 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "104ccc4e-bb10-4b74-84c5-6d09212cb73b")
+		(property "Reference" "R14" (at 922.48 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1k" (at 922.48 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 919.48 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 919.48 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "1549018f-66c4-4fbb-b7ef-62f2a84cf78a"))
+		(pin "2" (uuid "3177a595-e856-4489-bb0b-5f7988472d8f"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R14") (unit 1))))
+	)
+	(label "MASTER_IN" (at 919.48 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "50d54fb1-cc55-4a84-b605-1fefbf9807c2"))
+	(label "GND" (at 919.48 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "96acb8b1-82a0-4250-99b1-c438300cd473"))
+	(symbol (lib_id "Device:R") (at 947.42 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "31508080-329f-4d3d-965d-4f7a7aa82924")
+		(property "Reference" "R15" (at 950.42 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "4k7" (at 950.42 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 947.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 947.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "f0885804-5377-4a3d-86e6-2235ed9959c5"))
+		(pin "2" (uuid "16cb4bd1-4121-4dd2-ab7b-c54fe1eb36de"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R15") (unit 1))))
+	)
+	(label "MASTER_OUT" (at 947.42 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "6f188eb2-0b80-4b11-925d-42c415039589"))
+	(label "Q5E" (at 947.42 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "efccbbd1-0eb1-4728-82c6-03ecb69a703a"))
+	(symbol (lib_id "Device:R") (at 977.90 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1248f33f-71ba-4310-a238-cc1dff1ed6ab")
+		(property "Reference" "R16" (at 980.90 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "680" (at 980.90 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 977.90 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 977.90 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "be7fa6d7-9b93-4055-b35b-de381dfa8826"))
+		(pin "2" (uuid "6b1d110b-e5dc-4412-b8ab-e8ed143daf54"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R16") (unit 1))))
+	)
+	(label "N_LED_PWR" (at 977.90 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "b8c3bd1a-1221-4079-8ffe-d5bd9674919f"))
+	(label "+3V3" (at 977.90 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "9b4afe0c-c4e6-4322-a668-2bcff2de5f7a"))
+	(symbol (lib_id "Device:R") (at 1008.38 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "35dd6368-5069-437e-94f2-1294cc77c5d5")
+		(property "Reference" "R17" (at 1011.38 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1k" (at 1011.38 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 1008.38 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1008.38 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "974f06bc-6cb4-42f9-b1f9-d4782ff5fc49"))
+		(pin "2" (uuid "3c96a651-20fe-4e4e-ab1f-4d54a98d86d7"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R17") (unit 1))))
+	)
+	(label "N_LED_RXB" (at 1008.38 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "8bb02f86-fa6d-4ba8-8237-a68078aca9b7"))
+	(label "SLAVE_IN" (at 1008.38 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "4b681aea-0ab8-405f-9650-dffa2147eac6"))
+	(symbol (lib_id "Device:R") (at 1038.86 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "550fda3d-5023-4224-a2fb-80cbb1aa7084")
+		(property "Reference" "R18" (at 1041.86 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1k" (at 1041.86 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 1038.86 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1038.86 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "0a433fbf-d20a-4b00-a45b-f7a7a6678e16"))
+		(pin "2" (uuid "9ef545df-a38c-4eb9-82fa-6be320e26fc8"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R18") (unit 1))))
+	)
+	(label "N_LED_RXT" (at 1038.86 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "493bd930-ad37-4ebd-9064-8738e47299e3"))
+	(label "MASTER_IN" (at 1038.86 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "814ce5ad-77c1-41cd-8645-1e6e47d3da2f"))
+	(symbol (lib_id "Device:R") (at 1069.34 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "44482f8a-ae29-4546-9f77-240ac2f1cbe4")
+		(property "Reference" "R19" (at 1072.34 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "5k1" (at 1072.34 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 1069.34 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1069.34 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "761493b7-d890-471d-8229-29bbd8d0a071"))
+		(pin "2" (uuid "700031fc-2660-48b9-9b99-de9622cea332"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R19") (unit 1))))
+	)
+	(label "CC1" (at 1069.34 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "97280586-f02b-432f-b785-6c2033f073a6"))
+	(label "GND" (at 1069.34 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "61ef095f-0020-42f9-ab7e-58df451da1be"))
+	(symbol (lib_id "Device:R") (at 1097.28 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "d7f8ee51-97c9-4a2d-ad44-b39a2d4e1b88")
+		(property "Reference" "R20" (at 1100.28 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "5k1" (at 1100.28 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 1097.28 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1097.28 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "37c02fe1-ff13-44af-99b2-9e367ed0a8ab"))
+		(pin "2" (uuid "e7236555-713d-43e7-a188-96cce183673e"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R20") (unit 1))))
+	)
+	(label "CC2" (at 1097.28 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "77e17f72-9117-4cb3-81ec-70859fde8767"))
+	(label "GND" (at 1097.28 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "42f8f9fa-1564-4624-80b4-1ecf8b66c1a1"))
+	(symbol (lib_id "Device:R") (at 1127.76 119.38 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "9b277ef6-5ea7-4315-a5d4-ebf7aad0853c")
+		(property "Reference" "R21" (at 1130.76 115.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k 0.1%" (at 1130.76 123.38 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 1127.76 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 1127.76 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "6318e7d2-47bd-4fcd-8ed7-9d3299293afa"))
+		(pin "2" (uuid "2325de54-9180-4c16-8bfe-b215d288122c"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R21") (unit 1))))
+	)
+	(label "+3V3" (at 1127.76 115.57 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "04e37b2a-6cb4-4ad6-ac7d-7b5348a77ab4"))
+	(label "NTC_ADC" (at 1127.76 123.19 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "6cb3d8f3-fe63-4acc-b02c-aa12265afc20"))
+	(symbol (lib_id "Device:R") (at 40.64 152.40 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c39794b8-c05e-4ae1-bf7f-7c08d761c67b")
+		(property "Reference" "R22" (at 43.64 148.40 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 43.64 156.40 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 40.64 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 40.64 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "854868e9-495a-430b-8d9a-785e3a24368f"))
+		(pin "2" (uuid "05d2c61a-dfac-432c-b523-81d9e7048999"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R22") (unit 1))))
+	)
+	(label "+3V3" (at 40.64 148.59 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "3387dc21-6312-439e-b814-54813c7d3d4a"))
+	(label "EN" (at 40.64 156.21 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d10939d0-8e0f-4968-8477-570656265c65"))
+	(symbol (lib_id "Device:R") (at 71.12 152.40 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "d4b75589-0352-477d-b3af-71c7f7017383")
+		(property "Reference" "R23" (at 74.12 148.40 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 74.12 156.40 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 71.12 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 71.12 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "fb374a4c-8414-44e5-9db2-4ebc87e88302"))
+		(pin "2" (uuid "f804dfdb-47ae-450a-940f-b84f894316ed"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R23") (unit 1))))
+	)
+	(label "+3V3" (at 71.12 148.59 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "c4182be0-050d-4430-98bb-6083e7029855"))
+	(label "BOOT" (at 71.12 156.21 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "04ef8fb9-f608-4383-b704-c78bdd0245ce"))
+	(symbol (lib_id "Device:R") (at 101.60 152.40 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1ff24b7f-3b37-4827-bc29-1b53b54849ec")
+		(property "Reference" "R24" (at 104.60 148.40 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 104.60 156.40 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 101.60 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 101.60 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "7e1bbb26-7c5f-4b46-8bec-1703b2ae0feb"))
+		(pin "2" (uuid "f36be8fc-0990-4e78-9fe8-5256718645ba"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R24") (unit 1))))
+	)
+	(label "+3V3" (at 101.60 148.59 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "b971ecc9-ac02-4e4a-9216-ee47d316a14a"))
+	(label "IO2" (at 101.60 156.21 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "aa697726-6243-47f3-890b-274e6dfa0f2d"))
+	(symbol (lib_id "Device:R") (at 129.54 152.40 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "a410ba61-c07d-44ae-a0e5-866b49c10adc")
+		(property "Reference" "R25" (at 132.54 148.40 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 132.54 156.40 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 129.54 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 129.54 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5cadc1d9-96b0-4dbb-9e22-611909287dfa"))
+		(pin "2" (uuid "b7f8ab3e-de9e-43a1-9f6b-b94ccf5672ca"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R25") (unit 1))))
+	)
+	(label "+3V3" (at 129.54 148.59 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "5639c29e-adb1-4a42-b142-1cd6f10c7e3f"))
+	(label "IO8" (at 129.54 156.21 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "3d934f95-e1bd-4153-8365-8c300dde0480"))
+	(symbol (lib_id "Device:R") (at 160.02 152.40 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "2fb8f271-3f49-4d01-ad79-3d4b81e72c4a")
+		(property "Reference" "R26" (at 163.02 148.40 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "1k" (at 163.02 156.40 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric" (at 160.02 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 160.02 152.40 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "84213fc0-0e7a-4295-bbbd-2b49ef1527fd"))
+		(pin "2" (uuid "ba4d384e-8daa-4866-8b2a-b77c876a2497"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "R26") (unit 1))))
+	)
+	(label "LED_USER" (at 160.02 148.59 90) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "3f6e60e8-db2e-4e72-97a1-c487dc5a8543"))
+	(label "N_LED_USER" (at 160.02 156.21 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "dbf04c44-a9a9-4d75-870a-84cd9935292c"))
+	(symbol (lib_id "Switch:SW_Push") (at 195.58 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "14f97800-1649-41a6-a4f7-0716b52c75a2")
+		(property "Reference" "SW1" (at 198.58 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "RESET" (at 198.58 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2" (at 195.58 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 195.58 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C72443" (at 195.58 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "9d9e337c-e765-4a76-8606-c87d460a3af9"))
+		(pin "2" (uuid "14ea75df-7d86-453c-a43a-6c86793dc2d8"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "SW1") (unit 1))))
+	)
+	(label "EN" (at 190.50 147.32 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "7882c92b-f95f-4dd4-8fe5-9b3bbfbbeb31"))
+	(label "GND" (at 200.66 147.32 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "7b8594bb-2840-4e72-84f6-2bfb61b13403"))
+	(symbol (lib_id "Switch:SW_Push") (at 236.22 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "1bd7dc7b-2f21-4111-b126-4fc1ee065d27")
+		(property "Reference" "SW2" (at 239.22 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "BOOT" (at 239.22 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2" (at 236.22 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 236.22 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C72443" (at 236.22 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "abc67119-74e7-4b93-9dd9-6abce62bd59a"))
+		(pin "2" (uuid "4dd7a58f-9c3e-444e-8f93-00b345a41791"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "SW2") (unit 1))))
+	)
+	(label "BOOT" (at 231.14 147.32 180) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "517c395e-9e1e-4367-a0ec-59177bd27992"))
+	(label "GND" (at 241.30 147.32 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "cb3999ad-d142-440e-8d3f-82b985ce84e1"))
+	(symbol (lib_id "Connector:TestPoint") (at 271.78 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "f3215ada-426e-49cc-9bf2-562ff5f36316")
+		(property "Reference" "TP1" (at 274.78 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "+3V3" (at 274.78 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 271.78 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 271.78 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "3fb4dd4e-631b-4ff0-a311-91fecdbb77ff"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP1") (unit 1))))
+	)
+	(label "+3V3" (at 271.78 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "560cabef-4e5c-4150-a6ce-099763beefac"))
+	(symbol (lib_id "Connector:TestPoint") (at 299.72 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "335e6a46-6a23-454c-8584-5eb927e375a9")
+		(property "Reference" "TP2" (at 302.72 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "GND" (at 302.72 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 299.72 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 299.72 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "8a8a1c40-d299-4f0c-bd0f-a1f544ade28b"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP2") (unit 1))))
+	)
+	(label "GND" (at 299.72 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "45b324fd-694e-45fe-8698-a87f204b33bc"))
+	(symbol (lib_id "Connector:TestPoint") (at 330.20 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "86765376-e6ed-463e-86c5-373ea03ece85")
+		(property "Reference" "TP3" (at 333.20 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "+24V" (at 333.20 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 330.20 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 330.20 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "95e7561c-f764-4a27-aa7a-0c6255540f6a"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP3") (unit 1))))
+	)
+	(label "+24V" (at 330.20 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "6e1a832c-3d31-4e4d-946a-674a4268325d"))
+	(symbol (lib_id "Connector:TestPoint") (at 360.68 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "7f36dde3-8091-4b27-b71b-c3a69a6b4729")
+		(property "Reference" "TP4" (at 363.68 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "T+" (at 363.68 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 360.68 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 360.68 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "9d06bc2a-70f4-4a71-b41b-7161b833a893"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP4") (unit 1))))
+	)
+	(label "TPLUS" (at 360.68 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "d7bfaea5-1fab-49f9-bfe8-0d86d0cbbc95"))
+	(symbol (lib_id "Connector:TestPoint") (at 391.16 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "cb1ae277-9ebd-4e38-a912-333de88b9c53")
+		(property "Reference" "TP5" (at 394.16 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B1" (at 394.16 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 391.16 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 391.16 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d1bafd83-a540-4fd2-9b05-65de90dd157d"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP5") (unit 1))))
+	)
+	(label "B1" (at 391.16 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "33c6baf6-54f1-4173-ae2e-55fb3acde7e5"))
+	(symbol (lib_id "Connector:TestPoint") (at 421.64 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c71e4bde-7e2c-4352-93a9-3eb4c3058511")
+		(property "Reference" "TP6" (at 424.64 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B2" (at 424.64 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 421.64 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 421.64 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "8fa80dca-9a7f-42f3-ad31-7fdf840129de"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP6") (unit 1))))
+	)
+	(label "B2" (at 421.64 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "05a471c8-7587-4ba6-90ca-acb3ef65b374"))
+	(symbol (lib_id "Connector:TestPoint") (at 449.58 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c1da1949-7a1f-4b43-9417-892c80854fd8")
+		(property "Reference" "TP7" (at 452.58 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "+5V" (at 452.58 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 449.58 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 449.58 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2cee44fe-bc18-4a91-b224-4a51731c8583"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP7") (unit 1))))
+	)
+	(label "+5V" (at 449.58 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "b258b825-c6f2-48fc-9c44-52e00f65d7d8"))
+	(symbol (lib_id "Connector:TestPoint") (at 480.06 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "f77077a5-11d2-4b1a-979e-c99985c6837b")
+		(property "Reference" "TP8" (at 483.06 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "TXD" (at 483.06 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 480.06 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 480.06 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "95fd4d19-ec25-4a3b-a9bd-ab866f1ef7dc"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP8") (unit 1))))
+	)
+	(label "TXD" (at 480.06 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "02ae66c4-2fa2-44da-a859-ddc42cc684c6"))
+	(symbol (lib_id "Connector:TestPoint") (at 510.54 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "ffb053be-7f7e-4b81-9098-318ac8b8f794")
+		(property "Reference" "TP9" (at 513.54 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "RXD" (at 513.54 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 510.54 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 510.54 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "87a698eb-0453-4ace-b0e7-e184d8884653"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "TP9") (unit 1))))
+	)
+	(label "RXD" (at 510.54 147.32 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "54bc171e-37db-4c18-af1c-d3721fa7ac17"))
+	(symbol (lib_id "Mechanical:MountingHole") (at 541.02 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "8c4271be-0a2c-4507-8edb-f551a6b4cd64")
+		(property "Reference" "H1" (at 544.02 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "M3" (at 544.02 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 541.02 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 541.02 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "H1") (unit 1))))
+	)
+	(symbol (lib_id "Mechanical:MountingHole") (at 571.50 147.32 0) (unit 1)
+		(exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no)
+		(uuid "c7049128-950d-40dd-bbd0-86c97be0f546")
+		(property "Reference" "H2" (at 574.50 143.32 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "M3" (at 574.50 151.32 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3" (at 571.50 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 571.50 147.32 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "H2") (unit 1))))
+	)
+	(symbol (lib_id "power:PWR_FLAG") (at 35.56 215.90 0) (unit 1)
+		(exclude_from_sim no) (in_bom no) (on_board no) (dnp no)
+		(uuid "b196a85a-e58b-46e6-a3c7-1ec62bb518b2")
+		(property "Reference" "#FLG01" (at 35.56 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "PWR_FLAG" (at 35.56 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "" (at 35.56 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 35.56 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5abd0934-d79a-4f1d-bad1-355426b2ac4b"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "#FLG01") (unit 1))))
+	)
+	(label "GND" (at 35.56 215.90 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "544f4955-d30e-4540-99bf-ed5dc88c0c49"))
+	(symbol (lib_id "power:PWR_FLAG") (at 60.96 215.90 0) (unit 1)
+		(exclude_from_sim no) (in_bom no) (on_board no) (dnp no)
+		(uuid "415eb1f3-fa7b-454e-ad4c-0db4c0ba595c")
+		(property "Reference" "#FLG02" (at 60.96 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "PWR_FLAG" (at 60.96 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "" (at 60.96 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 60.96 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "3b485e66-bec4-4372-a1db-c37c4e532d8b"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "#FLG02") (unit 1))))
+	)
+	(label "+5V" (at 60.96 215.90 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "7404d619-7150-4a05-ac2c-e31ebd53f5d5"))
+	(symbol (lib_id "power:PWR_FLAG") (at 86.36 215.90 0) (unit 1)
+		(exclude_from_sim no) (in_bom no) (on_board no) (dnp no)
+		(uuid "0f8e3cb8-5b28-431a-bb82-bff461c1daac")
+		(property "Reference" "#FLG03" (at 86.36 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "PWR_FLAG" (at 86.36 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "" (at 86.36 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 86.36 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "18905926-1cda-4c30-9d52-cc1640f1619d"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "#FLG03") (unit 1))))
+	)
+	(label "+24V" (at 86.36 215.90 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "a9c848d1-4d99-4d67-b72d-06f03c35eaa5"))
+	(symbol (lib_id "power:PWR_FLAG") (at 111.76 215.90 0) (unit 1)
+		(exclude_from_sim no) (in_bom no) (on_board no) (dnp no)
+		(uuid "b598b436-8ecc-4971-bb4a-5266159bfef4")
+		(property "Reference" "#FLG04" (at 111.76 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "PWR_FLAG" (at 111.76 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "" (at 111.76 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 111.76 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "0d30c484-e385-4edc-af5c-f97e1b3d426e"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "#FLG04") (unit 1))))
+	)
+	(label "VBUS" (at 111.76 215.90 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "7b2c3075-50a5-4551-b06b-0ee669cfaba7"))
+	(symbol (lib_id "power:PWR_FLAG") (at 137.16 215.90 0) (unit 1)
+		(exclude_from_sim no) (in_bom no) (on_board no) (dnp no)
+		(uuid "cf9f8616-ee1c-4fa9-a3f2-d4d3202dac25")
+		(property "Reference" "#FLG05" (at 137.16 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "PWR_FLAG" (at 137.16 212.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "" (at 137.16 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "~" (at 137.16 215.90 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "ab510f1d-add2-491a-948f-e30ea773ccd0"))
+		(instances (project "opentherm-gateway" (path "/6b2b39de-3f73-4fba-bd98-9b549d9757c5" (reference "#FLG05") (unit 1))))
+	)
+	(label "5V_IN" (at 137.16 215.90 270) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid "88312ca7-963a-439e-a49b-fc085b2679f1"))
+	(sheet_instances (path "/" (page "1")))
+	(embedded_fonts no)
+)
