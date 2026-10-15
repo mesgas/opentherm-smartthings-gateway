@@ -194,6 +194,6 @@ if __name__ == "__main__":
                 print("PIN IN DUE NET:", p, used[p], net)
             used[p] = net
     refs = {p.split(".")[0] for p in used}
-    print("parti senza collegamenti:", sorted(set(PARTS) - refs))
-    print("riferimenti nei net ma non nelle parti:", sorted(refs - set(PARTS)))
-    print(len(PARTS), "parti,", len(NETS), "net,", len(used), "collegamenti")
+    print("parts without connections:", sorted(set(PARTS) - refs))
+    print("references in nets but not in parts:", sorted(refs - set(PARTS)))
+    print(len(PARTS), "parts,", len(NETS), "nets,", len(used), "connections")
