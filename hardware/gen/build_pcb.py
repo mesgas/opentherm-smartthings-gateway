@@ -46,6 +46,18 @@ for ref, (val, fpname, lcsc, desc) in PARTS.items():
     for pad in list(fp.Pads()):
         if pad.GetDrillSize().x and pad.GetDrillSize().x < mm(0.3):
             fp.Remove(pad)
+    if ref == "U4":
+        # plated hole in the middle of the GND pad: lets the pad be soldered from the bottom side
+        main = max((p for p in fp.Pads() if p.GetNumber() == "19"), key=lambda p: p.GetSize().x)
+        hole = pcbnew.PAD(fp)
+        hole.SetNumber("19")
+        hole.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+        hole.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
+        hole.SetLayerSet(pcbnew.PAD.PTHMask())
+        hole.SetSize(pcbnew.VECTOR2I(mm(2.4), mm(2.4)))
+        hole.SetDrillSize(pcbnew.VECTOR2I(mm(1.4), mm(1.4)))
+        hole.SetPosition(main.GetPosition())
+        fp.Add(hole)
     fp.SetReference(ref)
     fp.SetValue(val)
     x, y, rot, side = PLACE[ref]
