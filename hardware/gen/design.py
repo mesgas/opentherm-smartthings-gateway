@@ -71,10 +71,10 @@ PARTS = {
     "D11": ("RxB", LED, "C2297", "Receive from boiler"),
     "D12": ("RxT", LED, "C2296", "Receive from thermostat"),
     "R16": ("680", R, "", "PWR LED (3.3 V)"),
-    "R17": ("1k", R, "", "RxB LED (3.3 V)"),
+    "R17": ("330", R, "", "RxB LED (3.3 V, green)"),
     "R18": ("1k", R, "", "RxT LED (3.3 V)"),
     # --- MCU --------------------------------------------------------------------------
-    "U4": ("ESP32-C3-WROOM-02-N4", "RF_Module:ESP32-C3-WROOM-02", "C2934569", "ESP32-C3 module, 4 MB"),
+    "U4": ("ESP32-C3-WROOM-02-N4", "RF_Module:ESP32-C3-WROOM-02", "C2934560", "ESP32-C3 module, 4 MB"),
     "C6": ("100n", C, "", "ESP32 supply decoupling"),
     "C8": ("1u", C, "", "EN delay"),
     "R22": ("10k", R, "", "EN pull-up"),
@@ -113,6 +113,24 @@ PARTS = {
     "H1": ("M3", "MountingHole:MountingHole_3.2mm_M3", "", ""),
     "H2": ("M3", "MountingHole:MountingHole_3.2mm_M3", "", ""),
 }
+
+# LCSC / JLCPCB part numbers for the parts above that do not carry one (value -> code).
+# 0805, 1 % thick film (basic parts where available), X7R/X5R/C0G MLCC.
+_LCSC = {
+    "R": {"10k": "C17414", "1k": "C17513", "100": "C17408", "20": "C17544", "330": "C17630",
+          "220": "C17557", "560": "C28636", "680": "C17798", "4k7": "C17673", "5k1": "C27834",
+          "13k": "C17455", "33k": "C17633", "150k": "C17470", "240k": "C25824",
+          "10k 0.1%": "C110775"},
+    "C": {"10u/16V": "C1713", "22p": "C1804", "100n/50V": "C49678", "100n": "C49678",
+          "1u": "C28323"},
+}
+_OTHER = {"D15": "C84256", "D16": "C113964", "D17": "C113964",
+          "J1": "C474892", "J2": "C474892", "J5": "C474892", "J6": "C474892"}
+for _ref, (_val, _fp, _lcsc, _desc) in list(PARTS.items()):
+    if not _lcsc:
+        _code = _OTHER.get(_ref) or _LCSC.get(_ref[0], {}).get(_val, "")
+        if _code:
+            PARTS[_ref] = (_val, _fp, _code, _desc)
 
 # net -> list of "REF.PAD"
 NETS = {

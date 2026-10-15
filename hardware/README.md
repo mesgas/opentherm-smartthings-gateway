@@ -23,7 +23,7 @@ firmware as the breadboard version (`src/`, environment `gateway_pcb`).
 |---|---|
 | `opentherm-gateway.kicad_sch` / `.kicad_pcb` / `.kicad_pro` | KiCad 10 project |
 | `production/opentherm-gateway-gerber.zip` | Gerbers + drill, ready for a PCB house |
-| `production/bom.csv` | Bill of materials (LCSC codes where known) |
+| `production/bom.csv` | Bill of materials with LCSC part numbers (`bom-jlcpcb.csv` is the same in JLCPCB assembly format) |
 | `production/positions.csv` | Pick-and-place, both sides (for reference; assembly is by hand) |
 | `gen/` | Python generators: `design.py` is the single source of truth (parts + netlist), `gen_sch.py`, `build_pcb.py`, `route.py` (Freerouting), `export.py` |
 
@@ -79,4 +79,7 @@ Released under the same license, CERN-OHL-P-2.0.
 * 4 layers, 1.6 mm, FR-4, HASL is fine. Min track/space used: 0.15 / 0.2 mm, min drill 0.3 mm.
 * Hand assembly: all passives are 0805, the ESP32 module has its pads on the underside (hot air and
   flux). Parts are on both sides; do the side with the module first.
-* 0805 passive LCSC codes are left blank in the BOM on purpose: pick the basic parts you prefer.
+* The BOM has an LCSC code for every part (checked against the JLCPCB parts library, all in stock when
+  checked). Equivalent parts can be substituted; the screw terminals (KF350-3.5-2P) and the inductor
+  should be compared with their datasheets against the footprints before ordering.
+* RxB is a green LED (R17 = 330 ohm), PWR red, RxT yellow, USER red.

@@ -1,13 +1,13 @@
 Value,Designators,Footprint,Qty,LCSC,Note
-10u/16V,C1,C_0805_2012Metric,1,,Boost input
-22p,C2,C_0805_2012Metric,1,,Feedback
-100n/50V,C3,C_0805_2012Metric,1,,+24V
+10u/16V,C1,C_0805_2012Metric,1,C1713,Boost input
+22p,C2,C_0805_2012Metric,1,C1804,Feedback
+100n/50V,C3,C_0805_2012Metric,1,C49678,+24V
 10u/50V,C4,C_0805_2012Metric,1,C440198,+24V
-10u/16V,C5,C_0805_2012Metric,1,,3.3 V output
-100n,C6,C_0805_2012Metric,1,,ESP32 supply decoupling
-100n,C7,C_0805_2012Metric,1,,NTC filter
-1u,C8,C_0805_2012Metric,1,,EN delay
-1u,C9,C_0805_2012Metric,1,,LDO input
+10u/16V,C5,C_0805_2012Metric,1,C1713,3.3 V output
+100n,C6,C_0805_2012Metric,1,C49678,ESP32 supply decoupling
+100n,C7,C_0805_2012Metric,1,C49678,NTC filter
+1u,C8,C_0805_2012Metric,1,C28323,EN delay
+1u,C9,C_0805_2012Metric,1,C28323,LDO input
 1N5819W,D1,D_SOD-123,1,C8598,Schottky
 1N4148W,"D2,D3,D4,D5",D_SOD-123,4,C7420318,Bridge
 4V7,D6,D_SOD-123,1,C19077400,Zener 4.7 V
@@ -19,45 +19,45 @@ RxB,D11,LED_0805_2012Metric,1,C2297,Receive from boiler
 RxT,D12,LED_0805_2012Metric,1,C2296,Receive from thermostat
 1N5819W,D13,D_SOD-123,1,C8598,USB VBUS -> +5V
 1N5819W,D14,D_SOD-123,1,C8598,5V terminal -> +5V
-USER,D15,LED_0805_2012Metric,1,,User LED (IO10)
-SMAJ28CA,D16,D_SMA,1,,TVS across BOILER terminal
-SMAJ28CA,D17,D_SMA,1,,TVS across THERM terminal
-BOILER,J1,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,,Screw terminal 3.5 mm pitch
-THERM,J2,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,,Screw terminal 3.5 mm pitch
+USER,D15,LED_0805_2012Metric,1,C84256,User LED (IO10)
+SMAJ28CA,D16,D_SMA,1,C113964,TVS across BOILER terminal
+SMAJ28CA,D17,D_SMA,1,C113964,TVS across THERM terminal
+BOILER,J1,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,C474892,Screw terminal 3.5 mm pitch
+THERM,J2,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,C474892,Screw terminal 3.5 mm pitch
 USB-C,J3,USB_C_Receptacle_HRO_TYPE-C-31-M-12,1,C165948,"USB-C 16 pin, power + native USB"
-5V IN,J5,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,,Alternative 5 V supply
-NTC,J6,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,,Outdoor NTC 10k probe
+5V IN,J5,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,C474892,Alternative 5 V supply
+NTC,J6,TerminalBlock_4Ucon_1x02_P3.50mm_Horizontal,1,C474892,Outdoor NTC 10k probe
 10uH,L1,L_Bourns-SRN4018,1,C177242,Bourns SRN4018 10uH
 MMBT2907A,"Q1,Q2,Q3,Q4",SOT-23,4,C7420352,PNP
 MMBT2222A,"Q5,Q6",SOT-23,2,C8512,NPN
-240k,R1,R_0805_2012Metric,1,,Feedback
-13k,R2,R_0805_2012Metric,1,,Feedback
-330,R3,R_0805_2012Metric,1,,
-220,R4,R_0805_2012Metric,1,,
-100,"R5,R8",R_0805_2012Metric,2,,
-560,R6,R_0805_2012Metric,1,,U2 LED resistor (to +3V3)
-10k,"R7,R12",R_0805_2012Metric,2,,
-33k,R9,R_0805_2012Metric,1,,
-20,"R10,R11",R_0805_2012Metric,2,,
-150k,R13,R_0805_2012Metric,1,,
-1k,R14,R_0805_2012Metric,1,,
-4k7,R15,R_0805_2012Metric,1,,
-680,R16,R_0805_2012Metric,1,,PWR LED (3.3 V)
-1k,R17,R_0805_2012Metric,1,,RxB LED (3.3 V)
-1k,R18,R_0805_2012Metric,1,,RxT LED (3.3 V)
-5k1,R19,R_0805_2012Metric,1,,USB CC1
-5k1,R20,R_0805_2012Metric,1,,USB CC2
-10k 0.1%,R21,R_0805_2012Metric,1,,NTC divider reference
-10k,R22,R_0805_2012Metric,1,,EN pull-up
-10k,R23,R_0805_2012Metric,1,,IO9 (BOOT) pull-up
-10k,R24,R_0805_2012Metric,1,,IO2 pull-up (strapping)
-10k,R25,R_0805_2012Metric,1,,IO8 pull-up (strapping)
-1k,R26,R_0805_2012Metric,1,,User LED resistor
+240k,R1,R_0805_2012Metric,1,C25824,Feedback
+13k,R2,R_0805_2012Metric,1,C17455,Feedback
+330,R3,R_0805_2012Metric,1,C17630,
+220,R4,R_0805_2012Metric,1,C17557,
+100,"R5,R8",R_0805_2012Metric,2,C17408,
+560,R6,R_0805_2012Metric,1,C28636,U2 LED resistor (to +3V3)
+10k,"R7,R12",R_0805_2012Metric,2,C17414,
+33k,R9,R_0805_2012Metric,1,C17633,
+20,"R10,R11",R_0805_2012Metric,2,C17544,
+150k,R13,R_0805_2012Metric,1,C17470,
+1k,R14,R_0805_2012Metric,1,C17513,
+4k7,R15,R_0805_2012Metric,1,C17673,
+680,R16,R_0805_2012Metric,1,C17798,PWR LED (3.3 V)
+330,R17,R_0805_2012Metric,1,C17630,"RxB LED (3.3 V, green)"
+1k,R18,R_0805_2012Metric,1,C17513,RxT LED (3.3 V)
+5k1,R19,R_0805_2012Metric,1,C27834,USB CC1
+5k1,R20,R_0805_2012Metric,1,C27834,USB CC2
+10k 0.1%,R21,R_0805_2012Metric,1,C110775,NTC divider reference
+10k,R22,R_0805_2012Metric,1,C17414,EN pull-up
+10k,R23,R_0805_2012Metric,1,C17414,IO9 (BOOT) pull-up
+10k,R24,R_0805_2012Metric,1,C17414,IO2 pull-up (strapping)
+10k,R25,R_0805_2012Metric,1,C17414,IO8 pull-up (strapping)
+1k,R26,R_0805_2012Metric,1,C17513,User LED resistor
 RESET,SW1,SW_Push_1P1T_NO_CK_KMR2,1,C72443,Reset button
 BOOT,SW2,SW_Push_1P1T_NO_CK_KMR2,1,C72443,Boot button
 MT3540-F23,U1,SOT-23-5,1,C181783,Boost converter (alt. RY3750 C370888)
 LTV-817S,U2,SMDIP-4_W9.53mm,1,C109227,Optocoupler: line towards the boiler
 LTV-817S,U3,SMDIP-4_W9.53mm,1,C109227,Optocoupler: line from the boiler
-ESP32-C3-WROOM-02-N4,U4,ESP32-C3-WROOM-02,1,C2934569,"ESP32-C3 module, 4 MB"
+ESP32-C3-WROOM-02-N4,U4,ESP32-C3-WROOM-02,1,C2934560,"ESP32-C3 module, 4 MB"
 AP2112K-3.3,U5,SOT-23-5,1,C51118,3.3 V LDO 600 mA
 USBLC6-2SC6,U6,SOT-23-6,1,C7519,USB ESD protection

@@ -49,4 +49,9 @@ with open(os.path.join(OUT, "bom.csv"), "w", newline="", encoding="utf-8") as f:
     w.writerow(["Value", "Designators", "Footprint", "Qty", "LCSC", "Note"])
     for _, val, refs, fp, qty, lcsc, desc in rows:
         w.writerow([val, refs, fp, qty, lcsc, desc])
+with open(os.path.join(OUT, "bom-jlcpcb.csv"), "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
+    for _, val, refs, fp, qty, lcsc, desc in rows:
+        w.writerow([val, refs, fp, lcsc])
 print("outputs in", OUT)
