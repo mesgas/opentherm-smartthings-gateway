@@ -23,7 +23,7 @@ firmware as the breadboard version (`src/`, environment `gateway_pcb`).
 |---|---|
 | `opentherm-gateway.kicad_sch` / `.kicad_pcb` / `.kicad_pro` | KiCad 10 project |
 | `production/opentherm-gateway-gerber.zip` | Gerbers + drill, ready for a PCB house |
-| `production/bom.csv` | Bill of materials with LCSC part numbers (`bom-jlcpcb.csv` is the same in JLCPCB assembly format) |
+| `production/bom.csv` | Bill of materials with LCSC part numbers (`bom-lcsc.csv` for the LCSC BOM tool, `bom-jlcpcb.csv` for JLCPCB assembly: one row per part number) |
 | `production/positions.csv` | Pick-and-place, both sides (for reference; assembly is by hand) |
 | `gen/` | Python generators: `design.py` is the single source of truth (parts + netlist), `gen_sch.py`, `build_pcb.py`, `route.py` (Freerouting), `export.py` |
 

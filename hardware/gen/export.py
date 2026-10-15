@@ -66,6 +66,12 @@ with open(os.path.join(OUT, "bom-jlcpcb.csv"), "w", newline="", encoding="utf-8"
     w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
     for _, val, refs, fp, lcsc, note in merged:
         w.writerow([val, ",".join(refs), fp, lcsc])
+with open(os.path.join(OUT, "bom-lcsc.csv"), "w", newline="", encoding="utf-8") as f:
+    # LCSC BOM tool: Quantity is mandatory, columns are mapped on upload; one row per part number
+    w = csv.writer(f)
+    w.writerow(["Quantity", "LCSC Part Number", "Description", "Package", "Designator"])
+    for _, val, refs, fp, lcsc, note in merged:
+        w.writerow([len(refs), lcsc, val, fp, ",".join(refs)])
 try:
     with open(os.path.join(OUT, "bom.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
