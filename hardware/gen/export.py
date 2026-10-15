@@ -44,14 +44,34 @@ for (val, fp, lcsc, desc), refs in groups.items():
     refs.sort(key=refkey)
     rows.append((refkey(refs[0]), val, ",".join(refs), fp, len(refs), lcsc, desc))
 rows.sort()
-with open(os.path.join(OUT, "bom.csv"), "w", newline="", encoding="utf-8") as f:
-    w = csv.writer(f)
-    w.writerow(["Value", "Designators", "Footprint", "Qty", "LCSC", "Note"])
-    for _, val, refs, fp, qty, lcsc, desc in rows:
-        w.writerow([val, refs, fp, qty, lcsc, desc])
+# one row per part number (JLCPCB rejects duplicate part numbers); designators are merged
+by_code = {}
+for _, val, refs, fp, qty, lcsc, desc in rows:
+    by_code.setdefault(lcsc, []).append((val, refs, fp, desc))
+merged = []
+for lcsc, items in by_code.items():
+    refs = sorted((r for _, rs, _, _ in items for r in rs.split(",")), key=refkey)
+    vals = []
+    for v, _, _, _ in items:
+        if v not in vals:
+            vals.append(v)
+    notes = []
+    for _, _, _, d in items:
+        if d and d not in notes:
+            notes.append(d)
+    merged.append((refkey(refs[0]), " / ".join(vals), refs, items[0][2], lcsc, "; ".join(notes)))
+merged.sort()
 with open(os.path.join(OUT, "bom-jlcpcb.csv"), "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
-    for _, val, refs, fp, qty, lcsc, desc in rows:
-        w.writerow([val, refs, fp, lcsc])
+    for _, val, refs, fp, lcsc, note in merged:
+        w.writerow([val, ",".join(refs), fp, lcsc])
+try:
+    with open(os.path.join(OUT, "bom.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["Value", "Designators", "Footprint", "Qty", "LCSC", "Note"])
+        for _, val, refs, fp, lcsc, note in merged:
+            w.writerow([val, ",".join(refs), fp, len(refs), lcsc, note])
+except PermissionError:
+    print("bom.csv is open in another program: not updated (bom-jlcpcb.csv has the same data)")
 print("outputs in", OUT)
